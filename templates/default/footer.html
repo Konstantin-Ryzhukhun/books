@@ -1,0 +1,234 @@
+{% load static %}
+
+ 
+
+
+
+<footer>
+
+	<div class="footerbefore">
+		<div class="container">
+			<script>
+		function subscribe()
+		{
+			var emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var email = $('#txtemail').val();
+			if(email != "")
+			{
+				if(!emailpattern.test(email))
+				{
+					$('.text-danger').remove();
+					var str = '<span class="error">Invalid Email</span>';
+					$('#txtemail').after('<div class="text-danger">Invalid Email</div>');
+
+					return false;
+				}
+				else
+				{
+					$.ajax({
+						url: 'index.php?route=extension/module/newsletters/news',
+						type: 'post',
+						data: 'email=' + $('#txtemail').val(),
+						dataType: 'json',
+						
+									
+						success: function(json) {
+						
+						$('.text-danger').remove();
+						$('#txtemail').after('<div class="text-danger">' + json.message + '</div>');
+						
+						}
+						
+					});
+					return false;
+				}
+			}
+			else
+			{
+				$('.text-danger').remove();
+				$('#txtemail').after('<div class="text-danger">Email Is Require</div>');
+				$(email).focus();
+
+				return false;
+			}
+		}
+</script>
+<div class="newsletter">
+	<h5 class="news-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Подпишитесь сейчас</font></font></h5>
+	<div class="newsletter-message"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Узнай о новинках первым</font></font></div>
+	<div class="newsright">
+		<form action="#" method="post">
+			<div class="form-group required">
+				<label class="col-sm-2 control-label" for="input-firstname"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Электронная почта</font></font></label>
+				<div class="input-news">
+				  <input type="email" name="txtemail" id="txtemail" value="" placeholder="Введите ваш адрес электронной почты" class="form-control input-lg"> 
+				</div>			
+				<div class="subscribe-btn">
+				  <button type="submit" class="btn btn-default btn-lg" onclick="return subscribe();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Подписаться</font></font></button>   
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+		</div>
+	</div>
+	
+	<div id="footer" class="container">
+		<div class="row">
+      	<div class="footer-blocks">
+			
+			<div class="col-sm-3 column footerleft">
+				  <div id="czfootercmsblock" class="footer-cms-block">  
+<div id="footerlogo">
+<div class="footerdiv">
+<div class="footerlogo"><img src="/media/image/footer-logo.png"></div>
+<div class="footerdesc">
+	Читай книги где угодно вместе с нами онлайн</div>
+</div> 
+</div>
+</div>
+<div class="social-block">
+<ul>
+<li class="facebook"><a href="/"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Фейсбук</font></font></span></a></li>
+<li class="twitter"><a href="/"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Твиттер</font></font></span></a></li>
+<li class="youtube"><a href="/"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">YouTube</font></font></span></a></li>
+<li class="googleplus"><a href="/"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Гугл+</font></font></span></a></li>
+<li class="instagram"><a href="/"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Инстаграм</font></font></span></a></li>
+</ul>
+</div>
+
+			</div>
+	  
+		  			   
+		 	<div id="extra-link" class="col-sm-3 column">
+				<h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дополнительно</font></font></h5>
+				<ul class="list-unstyled">
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Бренды</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Подарочные сертификаты</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Партнер</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Специальные предложения</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Связаться с нами</font></font></a></li>	  
+				</ul>
+		  	</div>
+		  
+		  
+		  	<div class="col-sm-3 column">
+				<h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Мой счет</font></font></h5>
+				<ul class="list-unstyled">
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Мой счет</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">История заказов</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Список желаний</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Новостная рассылка</font></font></a></li>
+				  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Возврат</font></font></a></li>
+				</ul>
+		  	</div>
+
+		  	<div class="col-sm-3 column footerright">
+				  <div class="contact-block">
+<h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Информация о магазине</font></font></h5>
+<ul>
+<li>
+<i class="fa fa-map-marker"></i>
+<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Booklab – Книжный магазин </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">в США</font></font></span>
+</li>
+<li>
+<i class="fa fa-phone"></i>
+<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">000-000-0000</font></font></span>
+</li>
+<li>
+<i class="fa fa-fax"></i>
+<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">123456</font></font></span>
+</li>
+<li>
+<i class="fa fa-envelope-o"></i>
+<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sales@yourcompany.com</font></font></span>
+</li>
+</ul>
+</div>
+
+
+			</div>
+    	</div>
+				
+   		</div>
+    </div>
+
+	<div id="bottom-footer" class="bottomfooter">
+    	<div class="container">
+
+								  <div class="authorlink-block">
+<h5><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Лучшие авторы:</font></font></h5>
+<ul>
+<li>
+<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Стивен Кинг</font></font></a>
+</li>
+<li>
+<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Стефани Майер</font></font></a>
+</li>
+<li>
+<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дэн Браун</font></font></a>
+</li>
+<li>
+<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Джон Гришэм</font></font></a>
+</li>
+<li>
+<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Нора Робертс</font></font></a>
+</li>
+</ul>
+</div>
+  <div class="paiement_logo_block footer-block">
+<img src="/media/image/amex.png" alt="Amex" width="33" height="21">
+<img src="/media/image/maestro.png" alt="маэстро" width="33" height="21">
+<img src="/media/image/paypal.png" alt="PayPal" width="33" height="21">
+<img src="/media/image/master_card.png" alt="мастер_карта" width="33" height="21">
+</div>
+
+
+				<p id="powered" class="powered">Книжный магазин © 2024</p>
+				
+				
+		</div>
+	</div>
+</footer>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#testimonial-carousel').owlCarousel({
+			singleItem: true,
+			navigation: false,
+			pagination: true,
+			autoPlay: false
+		}); 
+		
+		// Custom Navigation Events
+		$(".cztestimonial_next").click(function(){
+			$('#testimonial-carousel').trigger('owl.next');
+		})
+		$(".cztestimonial_prev").click(function(){
+			$('#testimonial-carousel').trigger('owl.prev');
+		});	
+		
+		$('.brand-carousel').owlCarousel({
+			items: 5,
+			itemsDesktop : [1199,4], 
+	     	itemsDesktopSmall : [767,3], 
+			itemsTablet: [480,2], 
+	     	itemsMobile : [380,1],
+			singleItem: false,
+			navigation: false,
+			pagination: false,
+			autoPlay: true			
+		}); 
+		// Custom Navigation Events
+		$(".brand-next").click(function(){
+			$('.brand-carousel').trigger('owl.next');
+		})
+		$(".brand-prev").click(function(){
+			$('.brand-carousel').trigger('owl.prev');
+		});
+	});	
+</script>

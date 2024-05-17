@@ -1,0 +1,224 @@
+{% load static %} 
+{% block content %}
+
+
+<header>
+<div class="header-container">
+	<div class="container">
+    	<div class="row">
+			<div class="header-main">
+
+				<div class="header-cms-block">
+					<a class="header-cms" href="/">
+						<span class="offer-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Скидка 20%</font></font></span>
+						<span class="sub-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Только для новых 50 клиентов</font></font></span>
+					</a>
+				</div>
+				
+				<div class="header-logo">
+					<div id="logo">
+						<a href="/">
+						<img src="/media/image/logo.png" title="Booklab - Книжный магазин" alt="Booklab - Книжный магазин" class="img-responsive">
+					</a>					</div>
+				</div>
+		
+				<div class="header-cart"><div id="cart" class="btn-group btn-block">
+  <span class="cart_heading" data-toggle="dropdown"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ваша корзина</font></font></span>
+ <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$0,00</font></font></span>
+  <span id="cart-quantity"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span>
+  </button>
+  <ul class="dropdown-menu pull-right cart-menu" style="">
+        <li>
+      <p class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ваша корзина пуста!</font></font></p>
+    </li>
+      </ul>
+</div>
+</div>
+				
+					
+				<div class="dropdown myaccount">
+					<a href="/">
+						<span class="hidden-xs hidden-sm hidden-md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ваш счет</font></font></span>
+						<span class="login-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вход-Регистрация</font></font></span>
+						<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<ul class="dropdown-menu-right myaccount-menu" style="">
+												<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">регистр</font></font></a></li>
+						<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></a></li>
+												<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Список желаний (0)</font></font></a></li>
+						<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Моя тележка</font></font></a></li>
+						<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Проверить</font></font></a></li>
+						<li class="lang-curr">
+							<div class="pull-left">
+  <form action="/" method="post" enctype="multipart/form-data" id="form-language">
+  <div class="btn-group">
+    <button class="btn btn-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+      Язык
+                 
+        </font></font><img src="/media/image/en-gb.png" alt="Английский" title="Английский">
+                                      </button>
+      <ul class="language-menu">
+                <li>
+          <button class="btn btn-link btn-block language-select" type="button" name="en-gb"><img src="/media/image/en-gb.png" alt="Английский" title="Английский"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Английский</font></font></button>
+        </li>
+                <li>
+          <button class="btn btn-link btn-block language-select" type="button" name="ar"><img src="/media/image/ar.png" alt="арабский" title="арабский"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">арабский</font></font></button>
+        </li>
+            </ul>
+  </div>
+  <input type="hidden" name="code" value="">
+  <input type="hidden" name="redirect" value="/">
+</form>
+</div>
+
+							<div class="pull-left">
+  <form action="/" method="post" enctype="multipart/form-data" id="form-currency">
+  <div class="btn-group">
+      <button class="btn btn-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+      Валюта
+                                                         </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$</font></font></strong> 
+                 
+      </button>
+      <ul class="currency-menu">
+                        <li>
+          <button class="currency-select btn btn-link btn-block" type="button" name="EUR"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">€</font></font></button>
+        </li>
+                                <li>
+          <button class="currency-select btn btn-link btn-block" type="button" name="GBP"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">£</font></font></button>
+        </li>
+                                <li>
+          <button class="currency-select btn btn-link btn-block" type="button" name="USD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$</font></font></button>
+        </li>
+                    </ul>
+  </div>
+  <input type="hidden" name="code" value="">
+  <input type="hidden" name="redirect" value="/">
+</form>
+</div>
+ 
+						</li>
+					</ul>
+				</div>
+							
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="header-top-inner">
+	<div class="container">
+		<div id="search" class="input-group">
+	<span class="search_button"></span>
+	<div class="search_toggle">
+		<div id="searchbox">
+			<input type="text" name="search" value="" placeholder="Ищите продукты здесь" class="form-control input-lg">
+			<span class="input-group-btn">
+			<button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+			</span>
+		</div>
+	</div>
+</div>
+		<div class="header-top-innerleft">
+			<nav class="nav-container" role="navigation">
+<div class="nav-inner">
+<!-- ======= Menu Code START ========= -->
+<!-- Opencart 3 level Category Menu-->
+<div id="menu" class="main-menu" style="display: block;">
+	   
+      <ul class="nav navbar-nav">
+	  	<li class="top_level home"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дом</font></font></a></li>
+		
+    		   
+	    <li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Контакт</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Партнер</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Особенный</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Карта сайта</font></font></a></li>
+							<li class="top_level"> <a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Блоги</font></font></a></li>       
+				
+  </ul>  
+</div>
+
+</div>
+
+
+
+<!--  =============================================== Mobile menu start  =============================================  -->
+<div id="res-menu" class="main-menu nav-container1 container" style="display: none;">
+	<div class="nav-responsive" style="display: none;"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Меню</font></font></span><div class="expandable"></div></div>
+    <ul class="main-navigation">
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Книги</font></font></a>
+											<ul>
+																		<li>
+								<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Учебник истории</font></font></a>
+																	<ul class="list-unstyled childs_2">
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дьявол</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Средневековый</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Трюк с зеркалом</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Персеполь</font></font></a></li>
+									  									</ul>
+								  							</li>			
+															</ul>
+								<ul>
+																		<li>
+								<a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Книга биографий</font></font></a>
+																	<ul class="list-unstyled childs_2">
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Военный</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Европа</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Лидеры Люди</font></font></a></li>
+									  										<li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Этнические и культурные</font></font></a></li>
+									  									</ul>
+								  							</li>			
+															</ul>
+										</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Бизнес</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Комиксы</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ужастик</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Искусство и музыка</font></font></a>
+											<ul>
+																	  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Точка</font></font></a></li>
+																							  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Фотография</font></font></a></li>
+																							  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Музыка</font></font></a></li>
+																							  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Рисование</font></font></a></li>
+																							  <li><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Скульптура</font></font></a></li>
+															</ul>
+										</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Готовка</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Здоровье и фитнес</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дети</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Развлечение</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Медицинский</font></font></a>
+						</li>
+					<li class="top_level dropdown"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Тайны</font></font></a>
+						</li>
+				
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Контакт</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Партнер</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Особенный</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Карта сайта</font></font></a></li>
+		<li class="top_level"><a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Производитель</font></font></a></li>
+						<li> <a href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Блоги</font></font></a></li>       
+			</ul>
+</div>
+
+
+</nav>  
+</div>
+
+		</div>
+	</div>
+
+
+</header>
+
+
+
+
+
+{% endblock %}

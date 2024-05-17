@@ -1,0 +1,47 @@
+/* CSS Document */
+.swiper-viewport {
+	margin: 0px;
+	z-index: 1;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+/* OpenCart Code */
+.main-slider .swiper-wrapper, .swiper-container {
+	direction: ltr !important;
+}
+.swiper-pagination {
+	bottom: 9px;
+	left: 0;
+	text-align: center;
+	width: 100%;
+}
+.swiper-pagination-bullet {
+	width: 10px;
+    height: 10px;
+    display: inline-block;
+	margin: 0 4px;
+    background: #000000;
+	opacity: 1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+    text-indent: -9999px;
+    -webkit-transition: transform 0.3s cubic-bezier(0.7, -0.2, 0.3, 2.5), color 0.15s ease-out;
+    -moz-transition: transform 0.3s cubic-bezier(0.7, -0.2, 0.3, 2.5), color 0.15s ease-out;
+    -o-transition: transform 0.3s cubic-bezier(0.7, -0.2, 0.3, 2.5), color 0.15s ease-out;
+    transition: transform 0.3s cubic-bezier(0.7, -0.2, 0.3, 2.5), color 0.15s ease-out;
+}
+.swiper-pagination-bullet:hover,
+.swiper-pagination-bullet-active {
+	background: #e56220;
+    transform: scale(1.35);
+}
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: auto;
+}

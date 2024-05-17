@@ -1,0 +1,10 @@
+.ck-editor-container {
+	width: calc(100% - 170px);
+}
+
+
+#changelist table input {
+    margin: 0;
+    vertical-align: baseline;
+    width: 100px;
+}

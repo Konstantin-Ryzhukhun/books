@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  	<meta charset="utf-8">
+  	<meta name="format-detection" content="telephone=no"/>
+  	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+	  <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    {% block robots_zakrit %}{% endblock %}
+
+
+ <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/media/favicon/apple-icon-57x57.png" >
+    <link rel="apple-touch-icon" sizes="60x60" href="/media/favicon/apple-icon-60x60.png" >
+    <link rel="apple-touch-icon" sizes="72x72" href="/media/favicon/apple-icon-72x72.png" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/media/favicon/apple-icon-76x76.png" >
+    <link rel="apple-touch-icon" sizes="114x114" href="/media/favicon/apple-icon-114x114.png" >
+    <link rel="apple-touch-icon" sizes="120x120" href="/media/favicon/apple-icon-120x120.png" >
+    <link rel="apple-touch-icon" sizes="144x144" href="/media/favicon/apple-icon-144x144.png" >
+    <link rel="apple-touch-icon" sizes="152x152" href="/media/favicon/apple-icon-152x152.png" >
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-icon-180x180.png" >
+    <link rel="icon" type="image/png" sizes="192x192"  href="/media/favicon/android-icon-192x192.png" >
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png" >
+    <link rel="icon" type="image/png" sizes="96x96" href="/media/favicon/favicon-96x96.png" >
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png" >
+    <link rel="manifest" href="/media/favicon/manifest.json" >
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/media/favicon/ms-icon-144x144.png" >
+    <meta name="theme-color" content="#ffffff">
+    <!-- / favicon -->
+
+
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% endblock %}">
+    <meta property="og:site_name" content="Starcevmedia">
+    <meta property="article:modified_time" content="2022-01-11T09:43:32+00:00">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+
+
+  <link href="{% block image_src %}{% endblock %}" rel="image_src"/>
+
+
+  <link rel="canonical" href="{% block canonical %}{% endblock %}"/>
+
+
+
+<script src="/media/js/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="/media/js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="/media/js/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="/media/css/stylesheet.css" rel="stylesheet" />
+
+<!-- Codezeel - Start -->
+<link rel="stylesheet" type="text/css" href="/media/js/jquery/magnific/magnific-popup.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/carousel.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/custom.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/lightbox.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/animate.css" />
+
+
+<link href="style.html" type="text/css" rel="style.rel" media="style.media" />
+<link href="style.html" type="text/css" rel="style.rel" media="style.media" />
+
+
+<link href="/media/js/jquery/swiper/css/swiper.min.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="/media/js/jquery/swiper/css/opencart.css" type="text/css" rel="stylesheet" media="screen" />
+<script src="/media/js/jquery/swiper/js/swiper.jquery.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="/media/js/custom.js"></script>
+<script type="text/javascript" src="/media/js/jstree.min.js"></script>
+<script type="text/javascript" src="/media/js/carousel.min.js"></script>
+<script type="text/javascript" src="/media/js/codezeel.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery.custom.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery.formalize.min.js"></script>
+<script type="text/javascript" src="/media/js/lightbox/lightbox-2.6.min.js"></script>
+<script type="text/javascript" src="/media/js/tabs.js"></script>
+<script type="text/javascript" src="/media/js/jquery.elevatezoom.min.js"></script>
+<script type="text/javascript" src="/media/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/media/js/doubletaptogo.js"></script>
+<script type="text/javascript" src="/media/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery/magnific/jquery.magnific-popup.min.js"></script>
+
+
+<script src="/media/js/common.js" type="text/javascript"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+{% block content %}
+{% endblock %}
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}{{wiki_full.name_block|safe}}{% endblock %}
+{% block description %}{{wiki_full.name_block|safe}}{% endblock %}
+
+{% block og_title %}{{wiki_full.name_block|safe}}{% endblock %}
+{% block og_description %}{{wiki_full.name_block|safe}}{% endblock %}
+
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+{% block image_src %}https://rkehome.taplk.ru{% if catalog_category.image %}/media/{{catalog_category.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+{% block og_image %}https://rkehome.taplk.ru{% if catalog_category.image %}/media/{{catalog_category.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+
+
+{% block canonical %}{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ catalog_category.get_absolute_url }}{% endblock %}
+
+
+{% block content %}
+{% include "header.html" %}
+
+
+<nav aria-label="Хлебные крошки">
+        
+	<div class="breadcrumbs">
+	<a href="/">Начало</a>
+	› <a href="/wiki/">База знаний</a>
+	› <a href="{{ wiki_full.kurs_cat.get_absolute_url }}">{{ wiki_full.kurs_cat.name_block }}</a>
+	› {{ wiki_full.name_block }}
+	</div>
+
+</nav>
+
+
+<div class="container_wiki" style="margin-bottom: 50px;">
+
+
+	<div class="wiki_cat_wrp">
+
+		<div class="wiki_cat_wrp_l">
+		{% for wiki_cat_all in wiki_cat_all.all %}
+
+			<a href="{{ wiki_cat_all.get_absolute_url }}" {% if wiki_cat_all.id == wiki_full.kurs_cat.id  %}class="active_url" {% endif %} >{{ wiki_cat_all.name_block }}</a>
+
+		{% empty %}
+			<p style="font-size: 16px">Нет постов</p>
+		{% endfor %}
+		</div>	
+		<div class="wiki_cat_wrp_r">
+			<div class="search search--header">
+                <div class="search_wrap">
+                    <form class="search-form" action="/catalog/" class="user-tools__search site-search">
+                        <div class="fform">
+                            {% csrf_token %}
+                            {{ searchtag.q.errors }}
+                            <div class="tt-input" data-da="#search_mobile_top,768,0">
+                                   {{ searchtag.q }}
+                            </div>
+                        </div>
+                    </form>
+                	<div class="tt-menu-wrap" data-da="#search_mobile,768,0">
+                        <div class="tt-menu" style="position: absolute; top: 38px; left: 0px; z-index: 100;">
+                            <div class="tt-dataset tt-dataset-hashTags"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+<h1>{{ wiki_full.name_block }}</h1>
+
+
+{{wiki_full.opisanie_full|safe}}
+
+
+<h2>Задачи из этой категории:</h2>
+
+	<div class="task_wrap">
+		{% for tasks in tasks %}
+	
+		<div class="task_block" style="width: 48%">
+			<a href="{{tasks.get_absolute_url}}">
+				<div class="task_block_name">
+					{{tasks.name_block|safe}}
+				</div>
+	
+			</a>
+		</div>
+	
+	
+	
+		{% empty %}
+		<p style="font-size: 16px">Нет постов</p>
+		{% endfor %}
+	
+	
+	</div>
+
+
+</div>
+
+
+
+<script>
+	var preElements = document.getElementsByTagName('pre');
+	{% if wiki_full.language %}
+		const language = "{{ wiki_full.language }}"
+		for (var i = 0; i < preElements.length; i++) {
+			preElements[i].classList.add('prettyprint','linenums');
+			preElements[i].classList.add('lang-'+language);
+		}
+	{% else %}
+		for (var i = 0; i < preElements.length; i++) {
+			preElements[i].classList.add('prettyprint', 'linenums');
+		}
+	{% endif %}
+</script>
+
+<script src="/media/run_prettify.js"></script>
+
+
+{% include "footer.html" %}
+{% endblock %}

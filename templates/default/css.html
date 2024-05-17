@@ -1,0 +1,506 @@
+
+<style>
+
+
+:root {
+    --font-family-primary: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+.people_card_block{
+    padding: 10px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 450px;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    font-size: 14px;
+}
+
+.people_card_block_gender_m{
+    background: #c3e4e1;
+}
+.people_card_block_gender_g{
+    background: #d6acef;
+}
+
+
+
+.people_card_block_l{
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+.people_card_block_l img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.people_card_block_r{
+    width: calc(100% - 170px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1;
+    height: max-content;
+}
+
+.people_card_block_line{
+	display: flex;
+    margin-bottom: 10px;
+}
+.people_card_block_line_lable{}
+.people_card_block_line_val{
+	font-weight: 600;
+}
+
+
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: #417690;
+    color: #fff;
+}
+
+#branding {
+    display: flex;
+}
+
+#site-name {
+    padding: 0;
+    margin: 0;
+    margin-inline-end: 20px;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--header-branding-color);
+}
+
+#site-name a:link, #site-name a:visited {
+    color: #fff;
+}
+
+#user-tools {
+    float: right;
+    margin: 0 0 0 20px;
+    text-align: right;
+}
+
+#user-tools, #logout-form button {
+    padding: 0;
+    font-weight: 300;
+    font-size: 0.6875rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#user-tools a, #logout-form button {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+#header a:link, #header a:visited, #logout-form button {
+    color: #fff;    text-decoration: none;   font-family: var(--font-family-primary);
+}
+
+
+div.breadcrumbs {
+    background: #264b5d;
+    padding: 10px 40px;
+    border: none;
+    color: #c4dce8;
+    text-align: left;
+
+    font-size: 0.875rem;
+    font-family: var(--font-family-primary);
+}
+div.breadcrumbs a {
+color: #fff;
+    font-size: 0.875rem;
+    font-family: var(--font-family-primary);
+}
+
+
+.container_wiki {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    width: 100%;
+    margin-bottom: 100px;
+    font-family: Arial;
+}
+
+.container_wiki h1 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: .9;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.container_wiki h2 {
+    text-align: center;
+    font-weight: normal;
+    line-height: .9;
+    margin-bottom:20px;
+    margin-top: 40px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.wiki_cat_wrp {
+
+position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    color: #777;
+    border: 1px solid #bbb;
+    background-color: #f3f3f3;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wiki_cat_wrp_l {
+    width: auto;
+}
+.wiki_cat_wrp_r {
+        display: flex;
+    justify-content: right;
+}
+
+.wiki_cat_wrp a {
+    display: inline-block;
+    font-family: Arial;
+    font-size: 19px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+}
+
+.wiki_cat_wrp a:hover {
+        border-bottom: 1px dashed #666;
+        opacity:0.8;
+}
+
+.wiki_cat_wrp a.active_url{
+        border-bottom: 1px dashed #666;
+}
+
+.wiki_cat_wrp a.active_url:hover{
+    opacity:1;
+}
+
+.task_block{
+    width: 32.33333333%;
+    margin-left: .5%;
+    margin-right: .5%;
+    min-height: 63px;
+    color: #245f94;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px dashed #8ca5cf;
+    text-decoration: none;
+    position: relative;
+        max-height: 350px;
+        transition: all 0.2s;
+}
+
+.task_block:hover{
+   
+    scale: 102%;
+}
+
+.task_block a {
+text-decoration: none;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.task_block_name{
+display: block;
+    color: #203b69;
+    font-family: "Times New Roman";
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+.task_block_opisanie{
+    display: block;
+    margin-bottom: 5px;
+    font-family: Arial;
+    font-size: 15px;
+    /* -webkit-transform: scaleY(1.1);
+    -moz-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+    line-height: 1.1; */
+    color: #245f94;
+    text-align: left;
+}
+
+
+.task_wrap {
+        display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-top: 0;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: -0.5%;
+    margin-right: -0.5%;
+}
+
+
+pre.prettyprint {
+    margin: 0;
+    margin-bottom: 10px;
+    background: #ebebeb;
+    border: 0;
+    /* border-radius: 10px; */
+    padding: 10px;
+    padding-left: 20px;
+    text-align: left;
+    border-left: 1px dashed #ccc;
+    background: repeating-linear-gradient(to bottom, transparent, transparent 10px, #f4f4f4 10px, #f4f4f4 11px),repeating-linear-gradient(to right, transparent, transparent 10px, #f4f4f4 10px, #f4f4f4 11px);
+    background-clip: padding-box;
+    margin: 0 0 2px 0;
+    padding: 15px 0 15px 44px;
+}
+
+
+.travel_wrap{
+      margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    width: 100%;
+    margin-bottom: 100px;
+    font-family: Arial;  
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.travel_card{
+    background: #f1f1f1;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 1.875rem;
+    min-height: 8.75rem;
+    padding: 20px;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 40%;
+}
+.travel_card_l {
+    width: 50%;
+}
+.travel_card_r {
+    padding-left: 10px;
+    width: 50%;
+}
+
+.travel_card_r img{
+        width: 100%;
+        border-radius: 7px 7px 7px 7px;
+        -moz-border-radius: 7px 7px 7px 7px;
+        -webkit-border-radius: 7px 7px 7px 7px;
+        
+}
+
+.travel_card_l_name {
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.travel_card_l_op {
+    line-height: 1.5;
+}
+
+
+
+ol.linenums { margin-top: 0; margin-bottom: 0 }
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 { background: #ececec }
+
+.linenums li {
+    list-style-type: decimal;
+}
+
+
+.h1_date {
+    text-align: center;
+    font-weight: 600;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.travelvideo_wrap{
+    margin-top:0px;
+    display: flex;  
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.travelvideo_wrap a {
+    width: 48.3%;
+
+    height: 140px;  
+        position: relative;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.travelvideo_wrap img{
+    width: 100%;
+    height: 100%; 
+}
+
+.play-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+
+.yt_v_w_fon {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.yt_v_w {
+    /* width: 49%;
+    width: 120px;
+    height: 76px; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.travel_name {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0;
+    font-size: 12px;
+    font-family: 'Roboto';
+}
+
+.play{
+    width: 100%;
+    height: 100%;
+    background-image: url(/media/play.svg);
+    background-size: contain;
+}
+
+.paginator_a {
+    color: #2d2d38;
+    font-size: 30px;
+    color: #245f94;
+}
+
+.cateogory_midle_right_navigations {
+width: calc(100% + 1px);
+    text-align: center;
+    margin: 0px 0;
+   
+    padding: 10px 20px;
+  
+    margin-left: -1px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    line-height: 1.4;
+}
+.paginator_wrapper {
+    margin-bottom: 0px;
+}
+.paginator_current {
+    margin-right: 15px;
+    padding: 7px 15px 5px;
+    position: relative;
+    font-size: 30px;
+    color: #245f94;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px dashed #8ca5cf;
+}
+
+.paginator_wrapper a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: #245f94;
+    font-size: 30px;
+}
+
+.paginator_a_dots {
+    margin-left: -10px;
+    margin-right: 40px;
+    font-size: 30px;
+     color: #245f94;
+}
+
+
+
+
+{% include "search/search_style.css" %}
+
+</style>
