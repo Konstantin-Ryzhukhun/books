@@ -82,7 +82,104 @@ class BookAdmin(admin.ModelAdmin):
     class Meta:
         model = Book
 
+class ProstopagesAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Основные настройки',        {'fields': ['name_block',  'slug', 'image',
+            'text_block',  'template_name', 'active',  ]}),
+        ('Сео оптимизация', {'fields': ['title_us','description',]}),
+    ]
+    list_display = ["name_block",  "active", 'image_img',
+                    'title_us', 'description', 'slug', "created_at", ]
+    list_display_links = ["name_block",]
+    list_editable = ['active', 'slug',
+                     'title_us', 'description', ]
+    list_filter = ["active","created_at",]
+    search_fields = ["name_block"]
+    list_per_page = 30
+
+  
+
+    #автозаполнение slug
+    prepopulated_fields = {"slug": ("name_block",)}
+
+
+
+
+    class Meta:
+        model = Prostopages
+
+
+
+class OtzivAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Основные настройки',        {'fields': ['name_block', 'name_block2',
+            'text_block',  'template_name', 'active',  ]}),
+        
+    ]
+    list_display = ["name_block", "name_block2",  "active",  "created_at", ]
+    list_display_links = ["name_block",]
+    list_editable = ['active', ]
+    list_filter = ["active","created_at",]
+    search_fields = ["name_block"]
+    list_per_page = 30
+
+
+
+
+
+
+    class Meta:
+        model = Otziv
+
+
+class BlogAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Основные настройки',        {'fields': ['name_block', 'image',
+            'text_block',  'template_name', 'active',  ]}),
+        
+    ]
+    list_display = ["name_block", "image_img",   "active",  "created_at", ]
+    list_display_links = ["name_block",]
+    list_editable = ['active', ]
+    list_filter = ["active","created_at",]
+    search_fields = ["name_block"]
+    list_per_page = 30
+
+
+
+
+
+
+    class Meta:
+        model = Blog
+
+
+
+class SliderAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Основные настройки',        {'fields': ['name_block', 'image',
+              'template_name', 'active',  ]}),
+        
+    ]
+    list_display = ["name_block", "image_img",   "active",  "created_at", ]
+    list_display_links = ["name_block",]
+    list_editable = ['active', ]
+    list_filter = ["active","created_at",]
+    search_fields = ["name_block"]
+    list_per_page = 30
+
+
+
+
+
+
+    class Meta:
+        model = Slider
 
 
 admin.site.register(Book_cat, Book_catAdmin, )
 admin.site.register(Book, BookAdmin, )
+admin.site.register(Prostopages, ProstopagesAdmin, )
+admin.site.register(Otziv, OtzivAdmin, )
+admin.site.register(Blog, BlogAdmin, )
+admin.site.register(Slider, SliderAdmin, )

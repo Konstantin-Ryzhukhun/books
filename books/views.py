@@ -16,6 +16,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 import json
 
+from app.book.models import *
+
 # получение изображения по get
 from PIL import Image
 from io import BytesIO
@@ -25,7 +27,9 @@ import os
 
 def home(request):
 
-	text="Добро пожаловать"
+	slider = Slider.objects.filter(active=True, )
+	otziv = Otziv.objects.filter(active=True, )
+	category = Book_cat.objects.filter(active=True, )
 
 	# авторизация под админом
 	username = auth.get_user(request).username
@@ -48,7 +52,9 @@ def home(request):
 	# })
 
 	response = render(request, 'index.html', {
-		'text':text,
+		'category':category,
+		'slider':slider,
+		'otziv':otziv,
 		'username': username,
 		'login_error': login_error, 
 	})

@@ -1,0 +1,113 @@
+{% load static %} 
+{% block content %}
+
+<aside id="column-left" class="col-sm-3 hidden-xs">
+    <div id="verticalmenublock" class="box category box-category ">
+  <div class="box-heading">Все категории</div>
+  <div class="box-content box-content-category">
+<ul id="nav-one" class="dropmenu">
+
+
+{% for cat in category.all %}
+							
+	<li class="top_level main"><a href="{{cat.get_absolute_url}}">{{cat.name_block}}</a></li>
+							
+{% endfor %}
+
+
+<!-- <li class="top_level main"><a href="/">
+	Тайны</a></li> -->
+
+</ul>
+  </div>
+</div>
+
+
+
+
+
+    <div class="box special">
+<div class="container">
+	<div class="box-heading">Избранные продукты</div>
+  	<div class="box-content">
+							
+		<div class="box-product  productbox-grid" id="special-grid">
+
+
+				{% for book in book.featured.all %}
+					<div class="product-items">
+						{% include "book_prewie.html" %}
+					</div>
+				{% endfor %}
+
+  			  	
+	 		
+	 			</div>
+	 </div>
+</div>
+</div>
+<span class="special_default_width" style="display:none; visibility:hidden"></span>
+
+    <div class="box">
+  <div class="box-heading">Информация</div>
+	<div class="list-group">
+					<a class="list-group-item" href="/onas/">О нас</a>
+					<a class="list-group-item" href="/dostavka/">информация о доставке</a>
+					<a class="list-group-item" href="/politica/">политика конфиденциальности</a>
+					<a class="list-group-item" href="/info/">Условия использования</a>
+					<a class="list-group-item" href="/contact/">Связаться с нами</a>
+		<a class="list-group-item" href="/sitemap.xml">Карта сайта</a>
+	</div>
+</div>
+    		<div class="swiper-viewport">
+  <div id="banner0" class="swiper-container  single-banner ">
+    <div class="swiper-wrapper">
+	      <div class="swiper-slide"><a href="#"><img src="/media/image/left-banner-1-260x350.png" alt="Left banner" class="img-responsive" /></a></div>
+      </div>
+	  <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('#banner0').swiper({
+	effect: 'fade',
+	autoplay: 2500,
+    pagination: '.swiper-pagination',  // If we need pagination
+    autoplayDisableOnInteraction: false
+});
+--></script> 
+      <div class="box">
+<div class="box-heading">Отзывы о нас</div>
+<div class="box-content" id="cztestimonialcmsblock">
+<div class="testimonial_wrapper">
+<div class="testimonial-area">
+<ul id="testimonial-carousel" class="products product-carousel">
+
+	{% for otziv in otziv.all %}
+			
+			
+<li class="slider-item">
+<div class="testimonial-item">
+<div class="item cms_face">
+<div class="quote_img"></div>
+<div class="title">
+<div class="name">{{otziv.name_block|safe}}<span>{{otziv.name_block2|safe}}</span></div>
+</div>
+<div class="product_inner_cms">
+<div class="des">{{otziv.text_block|safe}}</div>
+</div>
+</div>
+</div>
+</li>
+	{% endfor %}
+
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+  </aside>
+
+
+  {% endblock %}

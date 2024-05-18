@@ -1,0 +1,55 @@
+<div class="product-block product-thumb transition" style="height: 374px;">
+	<div class="product-block-inner">
+
+		<div class="image">
+			<a href="{{book.get_absolute_url}}">
+				<img src="/media/{{book.image}}" title="{{book.name_block}}" alt="{{book.name_block}}"
+					class="img-responsive reg-image">
+				<img class="img-responsive hover-image" src="/media/{{book.image2}}" title="{{book.name_block}}"
+					alt="{{book.name_block}}">
+			</a>
+
+
+			<span class="saleicon sale">Распродажа</span>
+
+			<div class="percentsaving">Скидка 8%</div>
+
+			<div class="button-group">
+				<button class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42 ');"
+					data-placement="left" data-original-title="Добавить в избранное">
+					<i class="fa fa-heart"></i></button>
+				<div class="quickview-button" data-toggle="tooltip" title="" data-placement="left"
+					data-original-title="Quick view"> <a class="quickbox"
+						href="/">
+						<i class="fa fa-eye" aria-hidden="true"></i></a></div>
+				<button class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42 ');"
+					data-placement="left" data-original-title="Добавить в сравнение">
+					<i class="fa fa-exchange"></i></button>
+			</div>
+
+			<div class="button-addtocart">
+				<button type="button" class="addtocart" onclick="cart.add('42 ');"><span>добавить в корзину</span></button>
+			</div>
+
+		</div>
+		<div class="product-details">
+			<div class="caption">
+
+				<div class="rating">
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+				</div>
+
+				<h4><a href="/">{{book.name_block}}</a></h4>
+
+				<p class="price">
+					<span class="price-new">3100 руб</span> <span class="price-old">3450 руб</span>
+					<span class="price-tax">Со скидкой: 2450 руб</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

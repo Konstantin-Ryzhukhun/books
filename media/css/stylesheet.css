@@ -534,9 +534,12 @@ header .dropdown.myaccount a .fa{
 .header-container .row{ margin: 0px; }
 .header-container.smaller{z-index:999;}
 .header-logo img{
-	max-width:100%;     
-	text-align: center;
-    display: inline;
+    max-width: 100%;
+        text-align: center;
+        display: inline;
+        width: 240px;
+        height: auto;
+        margin-top: -10px;
 }
 .hed-right-top {
     position: relative;

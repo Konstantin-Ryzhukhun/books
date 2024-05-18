@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+{% include "header.html" %}
+
+{% include "left.html" %}
+
+
+<div id="content" class="col-sm-9  single-blog">
+	<ul class="breadcrumb">
+
+		<li><a href="/"><i
+					class="fa fa-home"></i></a></li>
+
+		<li><a href="/blog/">Блог</a></li>
+
+		<li>{{blog.name_block}}</li>
+
+	</ul>
+	<h1>{{blog.name_block}}</h1>
+
+
+	<div class="blog-img">
+		<img src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/blog-6-920x563.jpg"
+			alt="Necessitatibus Saepe Eveniet" title="Necessitatibus Saepe Eveniet" class="img-thumbnail">
+	</div>
+
+
+	<div class="blog-date">28 February, 2018</div>
+		<div>{{blog.text_block}}</div>
+	</div>
+
+
+
+
+
+
+	<div class="block-title">
+		<legend>добавить комментарий</legend>
+	</div>
+	<div class="panel panel-default" id="add-comment">
+
+		<h4 class="text-center">Для написания комментария нужно <a href="/login">авторизоваться</a></h4> </h4>
+
+	</div>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}

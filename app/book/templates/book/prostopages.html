@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+{% include "header.html" %}
+
+<div class="wrap-breadcrumb parallax-breadcrumb">
+	<div class="container"></div>
+</div>
+
+<div class="container">
+
+	<div class="row">
+
+		{% include "left.html" %}
+
+		<div id="content" class="col-sm-9  single-blog">
+			<ul class="breadcrumb">
+
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+
+				<li>{{prostopages.name_block}}</li>
+
+			</ul>
+			<h1>{{prostopages.name_block}}</h1>
+
+
+			
+
+
+			<div class="blog-date">28 February, 2018</div>
+			<div>{{prostopages.text_block|safe}}</div>
+		</div>
+
+
+
+
+
+
+
+	</div>
+</div>
+
+
+{% include "footer.html" %}
+{% endblock %}

@@ -20,129 +20,158 @@
 {% include "header.html" %}
 
 
-<nav aria-label="Хлебные крошки">
-        
-	<div class="breadcrumbs">
-	<a href="/">Начало</a>
-	› <a href="/wiki/">База знаний</a>
-	› {{ wiki_cat.name_block }}
-	</div>
-
-</nav>
-
-
-<div class="container_wiki">
-
-
-	<div class="wiki_cat_wrp">
-
-		<div class="wiki_cat_wrp_l">
-		{% for wiki_cat_all in wiki_cat_all.all %}
-
-			<a href="{{ wiki_cat_all.get_absolute_url }}" {% if wiki_cat_all.id == wiki_cat.id  %}class="active_url" {% endif %} >{{ wiki_cat_all.name_block }}</a>
-
-		{% empty %}
-			<p style="font-size: 16px">Нет постов</p>
-		{% endfor %}
-		</div>	
-		<div class="wiki_cat_wrp_r">
-			<div class="search search--header">
-                <div class="search_wrap">
-                    <form class="search-form" action="/catalog/" class="user-tools__search site-search">
-                        <div class="fform">
-                            {% csrf_token %}
-                            {{ searchtag.q.errors }}
-                            <div class="tt-input" data-da="#search_mobile_top,768,0">
-                                   {{ searchtag.q }}
-                            </div>
-                        </div>
-                    </form>
-                	<div class="tt-menu-wrap" data-da="#search_mobile,768,0">
-                        <div class="tt-menu" style="position: absolute; top: 38px; left: 0px; z-index: 100;">
-                            <div class="tt-dataset tt-dataset-hashTags"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-		</div>
-	</div>
-
-<h1>{{ wiki_cat.name_block }}</h1>
-
-
-	<div class="task_wrap">
-	{% for tasks in tasks %}
-
-		<div class="task_block animate__animated animate__fadeInUp">
-			<a href="{{tasks.get_absolute_url}}">
-				<div class="task_block_name">
-					{{tasks.name_block|safe}}
-				</div>
-				
-				<div class="task_block_opisanie">
-					{% if tasks.opisanie_mini %}
-						{{tasks.opisanie_mini|safe|truncatechars:"150"}}
-					{% else %}
-						{{tasks.opisanie_full|safe|truncatechars:"150"}}
-					{% endif %}
-				</div>
-			</a>
-		</div>
 
 
 
-	{% empty %}
+
+
+
+<div class="wrap-breadcrumb parallax-breadcrumb">
+	<div class="container"></div>
+</div>
+
+<div class="container">
+
+	<div class="row">
+
+		{% include "left.html" %}
+
+		<div id="content" class="col-sm-9  single-blog">
+			<ul class="breadcrumb">
+
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+
+				<li>{{book_cat.name_block}}</li>
+
+			</ul>
+
+
+
+
+
+<div class="row category_thumb">
+                <div class="col-sm-2 category_img"><img src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/category-banner-920x200.jpg" alt="Books" title="Books" class="img-thumbnail"></div>
+                
+        <div class="col-sm-12">
+        	<h1 class="page-title">{{book_cat.name_block}}</h1>
+        </div>
+
+        <div class="col-sm-10 category_description"><p>
+	Example of category description text</p>
+</div>
+              </div>
+
+
+
+			  <div id="products">
+
+
+
+
+				 <div class="cat_prod row">
+
+
+{% for tovar_all in tovar_all.all %}
+							
+					{% include "book_cat_tovar.html" %}
+							
+			{% empty %}
 		<p style="font-size: 16px">Нет постов</p>
 	{% endfor %}
 
 
-	</div>
+
+				 </div>
 
 
-	
-                    {% if tasks.paginator.num_pages > 1 %}
+
+
+
+
+
+
+<div class="pagination-wrapper">
+			<div class="col-sm-6 text-left page-link"><ul class="pagination"><li class="active"><span>1</span></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">2</a></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">&gt;</a></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">&gt;|</a></li></ul></div>
+			<div class="col-sm-6 text-right page-result">Showing 1 to 12 of 14 (2 Pages)</div>
+	   </div>
+
+   {% if tovar_all.paginator.num_pages > 1 %}
                      <div class="cateogory_midle_right_navigations">
                     <div class="paginator_wrapper">
                     <div class="paginator_wrapper">
-                        {% if tasks.has_previous %}
-                        <a class="paginator_b" rel="prev" href="?page={{ tasks.previous_page_number }}">←</a>{% else %} {% endif %}
-                        {% if tasks.previous_page_number > 2 %}
+                        {% if tovar_all.has_previous %}
+                        <a class="paginator_b" rel="prev" href="?page={{ tovar_all.previous_page_number }}">←</a>{% else %} {% endif %}
+                        {% if tovar_all.previous_page_number > 2 %}
                         <a class="paginator_a" href="?page=1">1</a> <span class="paginator_a_dots">...</span>
                         {% else %} {% endif %}
-                        {% for i in tasks.paginator.page_range %}
-                        {% if tasks.number == i %}
+                        {% for i in tovar_all.paginator.page_range %}
+                        {% if tovar_all.number == i %}
                         <span class="paginator_current">{{ i }}</span>
-                        {% elif i > tasks.number|add:'-2' and i < tasks.number|add:'10' %} 
+                        {% elif i > tovar_all.number|add:'-2' and i < tovar_all.number|add:'10' %} 
 						<a class="paginator_a" title="" href="?page={{ i }}">{{ i }}</a>
                             {% endif %}
                             {% endfor %}
                             
-                            {% if tasks.has_next and tasks.paginator.num_pages > 5 %}
+                            {% if tovar_all.has_next and tovar_all.paginator.num_pages > 5 %}
                             <span class="paginator_a_dots">…</span>
-                            <a class="paginator_c" title="" href="?page={{ tasks.paginator.num_pages }}">{{ tasks.paginator.num_pages }}</a>
-                            <a class="paginator_b" rel="next" style="margin-right: 0;" href="?page={{ tasks.next_page_number }}">→</a>
+                            <a class="paginator_c" title="" href="?page={{ tovar_all.paginator.num_pages }}">{{ tovar_all.paginator.num_pages }}</a>
+                            <a class="paginator_b" rel="next" style="margin-right: 0;" href="?page={{ tovar_all.next_page_number }}">→</a>
                             {% else %} {% endif %}
                     </div>
                      </div>
                   </div>
                     {% else %} {% endif %}
-                    
 
 
 
 
+			  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+	</div>
 </div>
 
 
 
-<script>
-	var preElements = document.getElementsByTagName('pre');
-	for (var i = 0; i < preElements.length; i++) {
-		preElements[i].classList.add('prettyprint');
-	}
-</script>
 
-<script src="/media/run_prettify.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% include "footer.html" %}

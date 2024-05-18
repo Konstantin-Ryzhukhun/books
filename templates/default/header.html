@@ -18,7 +18,7 @@
 				<div class="header-logo">
 					<div id="logo">
 						<a href="/">
-						<img src="/media/image/logo.png" title="Booklab - Книжный магазин" alt="Booklab - Книжный магазин" class="img-responsive">
+						<img src="/media/image/logo2.png" title="Книжный магазин" alt="Книжный магазин" class="img-responsive">
 					</a>					</div>
 				</div>
 		
@@ -118,6 +118,38 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+<div class="wiki_cat_wrp_r">
+			<div class="search search--header">
+                <div class="search_wrap">
+                    <form class="search-form" action="/catalog/" class="user-tools__search site-search">
+                        <div class="fform">
+                            {% csrf_token %}
+                            {{ searchtag.q.errors }}
+                            <div class="tt-input" data-da="#search_mobile_top,768,0">
+                                   {{ searchtag.q }}
+                            </div>
+                        </div>
+                    </form>
+                	<div class="tt-menu-wrap" data-da="#search_mobile,768,0">
+                        <div class="tt-menu" style="position: absolute; top: 38px; left: 0px; z-index: 100;">
+                            <div class="tt-dataset tt-dataset-hashTags"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+
+
+
+
+
+
+
 		<div class="header-top-innerleft">
 			<nav class="nav-container" role="navigation">
 <div class="nav-inner">
