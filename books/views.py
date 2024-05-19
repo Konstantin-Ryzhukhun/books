@@ -30,6 +30,7 @@ def home(request):
 	slider = Slider.objects.filter(active=True, )
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
+	blog = Blog.objects.filter(active=True, )[:10]
 
 	# авторизация под админом
 	username = auth.get_user(request).username
@@ -54,6 +55,7 @@ def home(request):
 	response = render(request, 'index.html', {
 		'category':category,
 		'slider':slider,
+		'blog':blog,
 		'otziv':otziv,
 		'username': username,
 		'login_error': login_error, 

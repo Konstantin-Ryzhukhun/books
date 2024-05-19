@@ -12,6 +12,9 @@ from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.safestring import mark_safe
 
 
+from sorl.thumbnail import get_thumbnail
+
+
 #валидация рейтинга
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -319,6 +322,19 @@ class Blog(models.Model):
 
 	def get_absolute_url(self):
 		return "/%s/" % (self.slug)
+	
+
+	def get_img_tovar_thumbnail(self):
+		if self.image:
+			a = self.image
+			# print(a)
+			im = get_thumbnail(a, 'x500', format="WEBP", crop='center', )
+			im2 = "/media/"+str(im)
+			# print(im)
+			# im = 1
+			return str(im2)
+		else:
+			return '(Нет изображения)'
 
 
 

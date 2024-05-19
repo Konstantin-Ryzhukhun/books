@@ -32,27 +32,27 @@ class TagJson(View):
 		q = request.GET.get('q', '')
 		taglist = []
 
-		tasks = Tasks.objects.filter(
+		books = Book.objects.filter(
 			Q(name_block__icontains=q) |
 			Q(opisanie_full__icontains=q)
 		).distinct()
 
 		# print(tovars)
 
-		if not tasks:  # Если результаты фильтрации пусты
+		if not books:  # Если результаты фильтрации пусты
 			similarity_list = []
 
-			for task in Tasks.objects.all():
-				if task.name_block is not None:
-					similarity = fuzz.ratio(task.name_block.lower(), q.lower())  # Производим сравнение
+			for book in Book.objects.all():
+				if book.name_block is not None:
+					similarity = fuzz.ratio(book.name_block.lower(), q.lower())  # Производим сравнение
 
 					if similarity > 60:
 
-						task_full_url = task.kurs_cat.wiki_cat_slug+"/"+task.wiki_slug
+						book_full_url = book.book_cat.book_cat_slug+"/"+book.book_slug
 
 						new = {
-							'q' : task.name_block, 
-							'url' : task_full_url,
+							'q' : book.name_block, 
+							'url' : book_full_url,
 							'type': 'tovar',
 						}
 						taglist.append(new)
@@ -61,13 +61,13 @@ class TagJson(View):
         
 
 		
-		for task in tasks:
+		for book in books:
 
-			task_full_url = task.kurs_cat.wiki_cat_slug+"/"+task.wiki_slug
+			book_full_url = book.book_cat.book_cat_slug+"/"+book.book_slug
 
 			new = {
-				'q' : task.name_block, 
-				'url' : task_full_url,
+				'q' : book.name_block, 
+				'url' : book_full_url,
 
 				'type': 'tovar',
 			

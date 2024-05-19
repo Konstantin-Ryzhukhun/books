@@ -465,10 +465,10 @@ header{
 #search .btn-lg {
     border: 0;
     background-color: #e56220;
-    top: 3px;
+    top: 0px;
     width: 32px;
     height: 32px;
-    right: 3px;
+    right: 0px;
     padding: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -3503,6 +3503,9 @@ h2.price {
     float: left;
     margin-bottom: 48px;
     clear: both;
+
+    overflow: hidden;
+    border-radius: 5px;
 }
 .main-slider .swiper-pager div {
         text-decoration: none;
