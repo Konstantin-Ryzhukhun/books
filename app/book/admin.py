@@ -61,15 +61,31 @@ class BookAdmin(admin.ModelAdmin):
             'name_block',
             'book_slug', 
             'book_cat',
+            'price',
+            'old_price',
+            'procent',
+            'skidka',
             'opisanie_full',
             'opisanie_mini',
+            'futured',
+            'special',
+            'bestseller',
+            'latest',
             'active',
 
               ]}),
     ]
-    list_display = ['name_block', 'book_slug',  'book_cat','active',]
+    list_display = ['name_block', 'price',
+            'old_price',  'book_cat', 'futured',
+            'special',
+            'bestseller',
+            'latest','active',]
     list_display_links = ["name_block",]
-    list_editable = ['active', 'book_slug',  'book_cat',]
+    list_editable = ['active','price',
+            'old_price','futured',
+            'special',
+            'bestseller',
+            'latest', 'book_cat',]
     list_filter = [ 'book_cat',"active","created_at",]
     search_fields = ["name_block"]
     list_per_page = 30
@@ -134,7 +150,7 @@ class OtzivAdmin(admin.ModelAdmin):
 
 class BlogAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Основные настройки',        {'fields': ['name_block', 'image',
+        ('Основные настройки',        {'fields': ['name_block', 'slug', 'image',
             'text_block',  'template_name', 'active',  ]}),
         
     ]
@@ -146,7 +162,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_per_page = 30
 
 
-
+    prepopulated_fields = {"slug": ("name_block",)}
 
 
 
@@ -183,3 +199,4 @@ admin.site.register(Prostopages, ProstopagesAdmin, )
 admin.site.register(Otziv, OtzivAdmin, )
 admin.site.register(Blog, BlogAdmin, )
 admin.site.register(Slider, SliderAdmin, )
+admin.site.register(OtzivBook )
