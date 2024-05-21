@@ -18,12 +18,20 @@ import json
 
 from app.book.models import *
 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import forms 
+from django.contrib import messages 
+from app.book.forms import * 
+
 # получение изображения по get
 from PIL import Image
 from io import BytesIO
 from django.conf import settings
 import os
 
+from constance import config
 
 def home(request):
 
@@ -70,7 +78,8 @@ def home(request):
 		'blog':blog,
 		'otziv':otziv,
 		'username': username,
-		'login_error': login_error, 
+		'login_error': login_error,
+		'config': config 
 	})
 
 	return response
@@ -111,6 +120,7 @@ def login(request):
 		'otziv':otziv,
 		'username': username,
 		'login_error': login_error, 
+		'config': config
 	})
 
 	return response
@@ -123,6 +133,27 @@ def register(request):
 	category = Book_cat.objects.filter(active=True, )
 
 	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+
+
+	if request.method=='POST' and 'register' in request.POST:
+		form_reg = UserForm(request.POST)
+		# print(form_reg)
+		# print(request.POST.get('username'))
+		# print(request.POST.get('password1'))
+
+		login = request.POST.get('username')
+		passwd = request.POST.get('password1')
+
+		if form_reg.is_valid():
+			form_reg.save()
+			user = auth.authenticate(username=login, password=passwd)
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+			
+	else:
+		form_reg = UserForm()
+
+
 
 
 	# авторизация под админом
@@ -139,11 +170,6 @@ def register(request):
 			login_error = 'Пользователь не найден'
 
 
-	# response = render(request, 'index.html', {
-	# 	'text':text,
-	# 	'username': username,
-	# 	'login_error': login_error, 
-	# })
 
 	response = render(request, 'register.html', {
 		'category':category,
@@ -151,6 +177,8 @@ def register(request):
 		'otziv':otziv,
 		'username': username,
 		'login_error': login_error, 
+		'form_reg': form_reg,
+		'config': config
 	})
 
 	return response

@@ -18,36 +18,103 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 
+from constance import config
+
 def blog(request):
+	
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
 	response = render(request, 'book/blog.html', {
 		'category':category,
 		'otziv':otziv,
+		'username': username,
+		'login_error': login_error, 
+		'config': config
 	})
 	return response
 
 def blog_cat(request, slug):
+	
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
 	response = render(request, 'book/blog_cat.html', {
 		'category':category,
 		'otziv':otziv,
+		'username': username,
+		'login_error': login_error, 
+		'config': config
 	})
 	return response
 
 def blog_full(request, slug,  post_slug):
+
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
 
 	response = render(request, 'book/blog_full.html', {
 		'category':category,
 		'otziv':otziv,
+		'username': username,
+		'login_error': login_error, 
+		'config': config
 	})
 	return response
 
 
 def prostopages(request, slug):
+
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
 
@@ -57,6 +124,9 @@ def prostopages(request, slug):
 		'prostopages':prostopages,
 		'category':category,
 		'otziv':otziv, 
+		'username': username,
+		'login_error': login_error, 
+		'config': config
 	})
 	return response
 
@@ -110,8 +180,9 @@ def book_cat(request, book_cat_slug):
 		# 'book_cat_all':book_cat_all,
 		# 'book_cat':book_cat,
 		# 'tasks':tasks,
-		# 'username': username,
-		# 'login_error': login_error, 
+		'username': username,
+		'login_error': login_error, 
+		'config': config
 	})
 
 	return response
@@ -152,6 +223,7 @@ def book_full(request, book_cat_slug, book_slug):
 		'book':book,
 		'username': username,
 		'login_error': login_error, 
+		'config': config
 	})
 
 

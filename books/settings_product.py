@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 	
     # ПРИЛОЖЕНИЯ
     'app.book',
+	'constance',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,29 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'image_field': ['django.forms.ImageField', {}]
+}
+
+
+CONSTANCE_CONFIG = {
+    # 'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
+    #                    'The Universe, and Everything'),
+	'LOGO': ('logo3.png', 'Просто выбери нужный', 'image_field'),
+	'LOGO_O': ('width:120px; margin-top: -29px', 'стили картинки, '),
+}
+CONSTANCE_FILE_ROOT = 'constance'
+
+CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
+# optionally set a value ttl
+CONSTANCE_REDIS_CACHE_TIMEOUT = 60
+CONSTANCE_REDIS_CONNECTION = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 0,
+}
 
 ROOT_URLCONF = 'books.urls'
 

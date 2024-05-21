@@ -60,64 +60,88 @@
 		<h1>Регистрация Аккаунта</h1>
       <p>Если у вас уже есть учетная запись на нашем сайте, пожалуйста, войдите на 
 	<a href="/login/">страницу входа</a> .</p>
+
+
+
+{% if messages %} 
+<ul> 
+{% for message in messages %} 
+<li>{{ message }}</li> 
+{% endfor %} 
+</ul> 
+{% endif %} 
+
+
+
+
+   
+
+
       <form action="/register/" method="post" enctype="multipart/form-data" class="form-horizontal">
+		  {% csrf_token %}
         <fieldset id="account">
           <legend>Ваши персональные данные</legend>
-          <div class="form-group required" style="display:  none ;">
-            <label class="col-sm-2 control-label">Группа клиентов</label>
-            <div class="col-sm-10">                            <div class="radio">
-                <label>
-                  <input type="radio" name="customer_group_id" value="1" checked="checked">
-                  По умолчанию</label>
-              </div>
-                            </div>
-          </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-firstname">Имя</label>
+          
+		  <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-firstname">Имя пользователя</label>
             <div class="col-sm-10">
-              <input type="text" name="firstname" value="" placeholder="Имя" id="input-firstname" class="form-control">
+
+			  <input type="text" name="username" maxlength="150" placeholder="Имя пользователя" autocapitalize="none" autocomplete="username" class="form-control" autofocus="" required="" aria-describedby="id_username_helptext" id="id_username">
+
                </div>
           </div>
           <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-lastname">Фамилия</label>
+            <label class="col-sm-2 control-label" for="id_first_name">Имя</label>
             <div class="col-sm-10">
-              <input type="text" name="lastname" value="" placeholder="Фамилия" id="input-lastname" class="form-control">
+              <input type="text" name="first_name" value="" placeholder="Имя" id="id_first_name" class="form-control">
+
+			
                </div>
           </div>
           <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-email">Электронная почта</label>
+            <label class="col-sm-2 control-label" for="id_last_name">Фамилия</label>
             <div class="col-sm-10">
-              <input type="email" name="email" value="" placeholder="Электронная почта" id="input-email" class="form-control">
+              <input type="text" name="last_name" value="" placeholder="Фамилия" id="id_last_name" class="form-control">
+
+			  
                </div>
           </div>
           <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-telephone">телефон</label>
+            <label class="col-sm-2 control-label" for="id_email">Электронная почта</label>
             <div class="col-sm-10">
-              <input type="tel" name="telephone" value="" placeholder="телефон" id="input-telephone" class="form-control">
+              <input type="email" name="email" value="" placeholder="Электронная почта" id="id_email" class="form-control">
+			 
                </div>
           </div>
+         
                   </fieldset>
         <fieldset>
           <legend>Ваш пароль</legend>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-password">Пароль</label>
             <div class="col-sm-10">
-              <input type="password" name="password" value="" placeholder="Пароль" id="input-password" class="form-control">
+         
+			    <input type="password" name="password1"  placeholder="Пароль" autocomplete="new-password" required="" class="form-control" aria-describedby="id_password1_helptext" id="id_password1">
                </div>
           </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-confirm">Подтвердить пароль</label>
             <div class="col-sm-10">
-              <input type="password" name="confirm" value="" placeholder="Подтвердить пароль" id="input-confirm" class="form-control">
+				
+				<input type="password" name="password2" autocomplete="new-password" placeholder="Подтвердить пароль" class="form-control" required="" aria-describedby="id_password2_helptext" id="id_password2">
+
                </div>
           </div>
         </fieldset>
        
-        
+      
+
+
+
                 <div class="buttons">
           <div class="pull-right">
                       
-            <input type="submit" value="Продолжать" class="btn btn-primary">
+            <button type="submit" value="Продолжать" name="register" class="btn btn-primary">Продолжить</button>
           </div>
         </div>
               </form>
