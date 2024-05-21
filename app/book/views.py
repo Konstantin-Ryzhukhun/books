@@ -72,14 +72,14 @@ def book_cat(request, book_cat_slug):
 
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
 
 
 	book_cat = get_object_or_404(Book_cat.objects.filter(active=True, book_cat_slug=book_cat_slug) )
 
-	tovar_all = Book.objects.filter(active=True, book_cat=book_cat).order_by('-created_at').distinct()
+	tovar_all = Book.objects.filter(active=True, book_cat=book_cat).order_by('-created_at')
 
-
-	paginator = Paginator(tovar_all, 30)
+	paginator = Paginator(tovar_all, 12)
 	page = request.GET.get('page')
 	try:
 		tovar_all = paginator.page(page)
@@ -106,6 +106,7 @@ def book_cat(request, book_cat_slug):
 		'tovar_all':tovar_all,
 		'category':category,
 		'otziv':otziv, 
+		'futured_mini':futured_mini,
 		# 'book_cat_all':book_cat_all,
 		# 'book_cat':book_cat,
 		# 'tasks':tasks,
@@ -118,11 +119,16 @@ def book_cat(request, book_cat_slug):
 
 def book_full(request, book_cat_slug, book_slug):
 
-	book_cat_all = book_cat.objects.all().order_by('nomer_id')
 
-	book_full = get_object_or_404(Book, book_slug=book_slug)
 
-	book = Book.objects.filter(active=True, kurs_cat__id=book_full.kurs_cat.id).order_by('?').distinct()[:8]
+	book = get_object_or_404(Book, book_slug=book_slug)
+
+	book_dop = Book.objects.filter(active=True, book_cat=book.book_cat).order_by('?')[:20]
+	otziv_book = OtzivBook.objects.filter(active=True, book=book)
+
+	otziv = Otziv.objects.filter(active=True, )
+	category = Book_cat.objects.filter(active=True, )
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
 
 	# авторизация под админом
 	username = auth.get_user(request).username
@@ -138,15 +144,16 @@ def book_full(request, book_cat_slug, book_slug):
 			login_error = 'Пользователь не найден'
 
 	response = render(request, 'book/book_full.html', {
-		'book_cat_all':book_cat_all,
-		'book_full':book_full,
+		'otziv':otziv, 
+		'book_dop':book_dop,
+		'otziv_book':otziv_book,
+		'futured_mini':futured_mini,
+		'category':category,
 		'book':book,
 		'username': username,
 		'login_error': login_error, 
 	})
 
 
-	if not request.user.is_authenticated:
-		return HttpResponseRedirect('/')
-	else:
-		return response
+
+	return response

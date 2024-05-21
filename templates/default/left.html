@@ -34,10 +34,8 @@
 		<div class="box-product  productbox-grid" id="special-grid">
 
 
-				{% for book in book.featured.all %}
-					<div class="product-items">
-						{% include "book_prewie.html" %}
-					</div>
+				{% for book in futured_mini.all %}
+						{% include "book_prewie_mini.html" %}
 				{% endfor %}
 
   			  	

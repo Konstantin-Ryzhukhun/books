@@ -1,18 +1,27 @@
 <div class="product-block product-thumb transition" style="height: 374px;">
 	<div class="product-block-inner">
 
-		<div class="image">
+		<div class="image" >
 			<a href="{{book.get_absolute_url}}">
-				<img src="/media/{{book.image}}" title="{{book.name_block}}" alt="{{book.name_block}}"
+				<img src="{{book.get_img_tovar_thumbnail3}}" title="{{book.name_block}}" alt="{{book.name_block}}"
 					class="img-responsive reg-image">
-				<img class="img-responsive hover-image" src="/media/{{book.image2}}" title="{{book.name_block}}"
+
+				{% if book.get_img_tovar_thumbnail4 %}
+				<img class="img-responsive hover-image" src="{{book.get_img_tovar_thumbnail4}}" title="{{book.name_block}}"
 					alt="{{book.name_block}}">
+				{% else %}
+				<img class="img-responsive hover-image" src="{{book.get_img_tovar_thumbnail3}}" title="{{book.name_block}}"
+					alt="{{book.name_block}}">
+				{% endif %}
+
+
 			</a>
 
-
+			{% if book.procent != 0 %}
 			<span class="saleicon sale">Распродажа</span>
 
-			<div class="percentsaving">Скидка 8%</div>
+			<div class="percentsaving">Скидка {{book.procent}}%</div>
+			{% endif %}
 
 			<div class="button-group">
 				<button class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42 ');"
@@ -28,7 +37,7 @@
 			</div>
 
 			<div class="button-addtocart">
-				<button type="button" class="addtocart" onclick="cart.add('42 ');"><span>добавить в корзину</span></button>
+				<button type="button" class="addtocart" onclick="cart.add('42 ');"><span>В корзину</span></button>
 			</div>
 
 		</div>
@@ -46,8 +55,11 @@
 				<h4><a href="/">{{book.name_block}}</a></h4>
 
 				<p class="price">
-					<span class="price-new">3100 руб</span> <span class="price-old">3450 руб</span>
-					<span class="price-tax">Со скидкой: 2450 руб</span>
+					<span class="price-new">{{book.price}} руб</span> 
+					{% if book.procent != 0 %}
+					<span class="price-old">{{book.old_price}} руб</span>
+					<span class="price-tax">Со скидкой: {{book.skidka}} руб</span>
+					{% endif %}
 				</p>
 			</div>
 		</div>

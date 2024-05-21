@@ -56,8 +56,7 @@
         	<h1 class="page-title">{{book_cat.name_block}}</h1>
         </div>
 
-        <div class="col-sm-10 category_description"><p>
-	Example of category description text</p>
+        <div class="col-sm-10 category_description">
 </div>
               </div>
 
@@ -71,13 +70,13 @@
 				 <div class="cat_prod row">
 
 
-{% for tovar_all in tovar_all.all %}
-							
-					{% include "book_cat_tovar.html" %}
-							
-			{% empty %}
-		<p style="font-size: 16px">Нет постов</p>
-	{% endfor %}
+{% for book in tovar_all %}
+	<div class="product-layout product-grid col-lg-4 col-md-4 col-sm-4 col-xs-6">						
+	        {% include "book_prewie.html" %}
+	</div>						
+{% empty %}
+        <p style="font-size: 16px">Нет постов</p>
+{% endfor %}
 
 
 
@@ -91,36 +90,53 @@
 
 
 <div class="pagination-wrapper">
-			<div class="col-sm-6 text-left page-link"><ul class="pagination"><li class="active"><span>1</span></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">2</a></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">&gt;</a></li><li><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/category&amp;path=20&amp;page=2">&gt;|</a></li></ul></div>
-			<div class="col-sm-6 text-right page-result">Showing 1 to 12 of 14 (2 Pages)</div>
-	   </div>
+			<div class="col-sm-6 text-left page-link">
+                              
 
+                                
    {% if tovar_all.paginator.num_pages > 1 %}
-                     <div class="cateogory_midle_right_navigations">
-                    <div class="paginator_wrapper">
-                    <div class="paginator_wrapper">
+                    <ul class="pagination">
                         {% if tovar_all.has_previous %}
-                        <a class="paginator_b" rel="prev" href="?page={{ tovar_all.previous_page_number }}">←</a>{% else %} {% endif %}
+                       <li> <a class="paginator_b" rel="prev" href="?page={{ tovar_all.previous_page_number }}">←</a></li>{% else %} {% endif %}
                         {% if tovar_all.previous_page_number > 2 %}
-                        <a class="paginator_a" href="?page=1">1</a> <span class="paginator_a_dots">...</span>
+                         <li>  <a class="paginator_a" href="?page=1">1</a> </li>
+                           <li>      <span class="paginator_a_dots">...</span> </li>
                         {% else %} {% endif %}
                         {% for i in tovar_all.paginator.page_range %}
                         {% if tovar_all.number == i %}
-                        <span class="paginator_current">{{ i }}</span>
+                        <li class="active">   <span class="paginator_current">{{ i }}</span> </li>
                         {% elif i > tovar_all.number|add:'-2' and i < tovar_all.number|add:'10' %} 
-						<a class="paginator_a" title="" href="?page={{ i }}">{{ i }}</a>
+						  <li > <a class="paginator_a" title="" href="?page={{ i }}">{{ i }}</a> </li>
                             {% endif %}
                             {% endfor %}
-                            
+
+
                             {% if tovar_all.has_next and tovar_all.paginator.num_pages > 5 %}
-                            <span class="paginator_a_dots">…</span>
-                            <a class="paginator_c" title="" href="?page={{ tovar_all.paginator.num_pages }}">{{ tovar_all.paginator.num_pages }}</a>
-                            <a class="paginator_b" rel="next" style="margin-right: 0;" href="?page={{ tovar_all.next_page_number }}">→</a>
+                            <li>   <span class="paginator_a_dots">…</span> </li>
+                             <li>  <a class="paginator_c" title="" href="?page={{ tovar_all.paginator.num_pages }}">{{ tovar_all.paginator.num_pages }}</a> </li>
+                             <li>  <a class="paginator_b" rel="next" style="margin-right: 0;" href="?page={{ tovar_all.next_page_number }}">→</a> </li>
                             {% else %} {% endif %}
-                    </div>
-                     </div>
-                  </div>
+                
+                    </ul>
                     {% else %} {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+			<div class="col-sm-6 text-right page-result"></div>
+	   </div>
 
 
 

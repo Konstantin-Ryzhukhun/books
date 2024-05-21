@@ -54,6 +54,23 @@ class Book_catAdmin(admin.ModelAdmin):
 # # ////////////////////////////////////////////
 
 
+# class BookFileInline(admin.TabularInline):
+#     fields = ['name','file','file2', 'file3', 'file4']
+#     model = BookFile
+#     extra = 3
+#     insert_after = 'image2'
+
+#     def get_extra(self, request, obj=None, **kwargs):
+#         extra = 3
+#         if obj:
+#             if obj.bookfile.count():
+#                 return 1
+#             else:
+#                 return 1
+#         return extra
+
+
+
 class BookAdmin(admin.ModelAdmin):
 
     fieldsets = [
@@ -61,21 +78,28 @@ class BookAdmin(admin.ModelAdmin):
             'name_block',
             'book_slug', 
             'book_cat',
+            'image',
+            'image2',
             'price',
             'old_price',
             'procent',
             'skidka',
+            'avtors',
             'opisanie_full',
             'opisanie_mini',
-            'futured',
+            'file',
+            'file2',
+            'file3',
+            'file4',
+           ( 'futured',
             'special',
             'bestseller',
-            'latest',
-            'active',
+            'latest','active'),
+            
 
               ]}),
     ]
-    list_display = ['name_block', 'price',
+    list_display = ['name_block', 'image_img','price',
             'old_price',  'book_cat', 'futured',
             'special',
             'bestseller',
@@ -89,6 +113,15 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = [ 'book_cat',"active","created_at",]
     search_fields = ["name_block"]
     list_per_page = 30
+
+    filter_horizontal = (
+        'avtors',
+    )
+
+    # inlines = [
+    #     BookFileInline,
+    # ]
+
 
     actions = [all_post, complete_post, incomplete_post]
 
@@ -200,3 +233,4 @@ admin.site.register(Otziv, OtzivAdmin, )
 admin.site.register(Blog, BlogAdmin, )
 admin.site.register(Slider, SliderAdmin, )
 admin.site.register(OtzivBook )
+admin.site.register(Book_avtor )

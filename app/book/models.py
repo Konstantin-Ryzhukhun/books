@@ -53,6 +53,55 @@ class Book_cat(models.Model):
 
 
 
+
+class Book_avtor (models.Model):
+	name_block = models.CharField(u'Фамилия', max_length=255, unique=False, null=True, blank=True)
+	name_block2 = models.CharField(u'Имя', max_length=255, unique=False, null=True, blank=True)
+	name_block3 = models.CharField(u'Отчество', max_length=255, unique=False, null=True, blank=True)
+
+	active = models.BooleanField(default=True,verbose_name='Активность',)
+	created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name="Created at")
+	updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
+	template_name = models.CharField(
+		('Выбор шаблона'),
+		max_length=70,
+		blank=True,
+	)
+
+
+	def __str__(self):
+		if self.name_block and self.name_block2 and self.name_block3:
+			return f"{self.name_block} {self.name_block2} {self.name_block3}"
+		elif self.name_block and self.name_block2:
+			return f"{self.name_block} {self.name_block2}"
+		elif self.name_block2 and self.name_block3:
+			return f"{self.name_block2} {self.name_block3}"
+		elif self.name_block2:
+			return self.name_block2
+		else:
+			return str(self.id)
+		
+	def full_name(self):
+		if self.name_block and self.name_block2 and self.name_block3:
+			return f"{self.name_block} {self.name_block2} {self.name_block3}"
+		elif self.name_block and self.name_block2:
+			return f"{self.name_block} {self.name_block2}"
+		elif self.name_block2 and self.name_block3:
+			return f"{self.name_block2} {self.name_block3}"
+		elif self.name_block2:
+			return self.name_block2
+		else:
+			return str(self.id)
+	
+
+	# переопределение названий
+	class Meta:
+		verbose_name = "Авторы книг"
+		verbose_name_plural = "Авторы книг"
+		ordering = ["-created_at"]
+
+
+
 class Book (models.Model):
 	name_block = models.CharField(u'Название книги', max_length=255, unique=False, null=False, blank=False)
 	book_cat = models.ForeignKey('Book_cat', verbose_name='книга относится к категории', default='',  null=True, on_delete=models.CASCADE,)
@@ -60,13 +109,21 @@ class Book (models.Model):
 	opisanie_mini = CKEditor5Field(verbose_name='Описание краткое',default='', config_name='extends', null=True, blank=True)
 	book_slug = models.SlugField(unique=True, max_length=255,  verbose_name='Url', db_index=True)
 	image = models.ImageField(verbose_name='Картинка',upload_to='prostopages',  null=True, blank=True)
-	image2 = models.ImageField(verbose_name='Картинка',upload_to='prostopages',  null=True, blank=True)
+	image2 = models.ImageField(verbose_name='Картинка-2',upload_to='prostopages',  null=True, blank=True)
 	
+	avtors = models.ManyToManyField('Book_avtor', verbose_name='Автор книги', blank=True, symmetrical=False, related_name='avtor_book')
+
 
 	price = models.DecimalField(max_digits=6, decimal_places=0, default=0, verbose_name="Цена", null=True, blank=True)
 	old_price = models.DecimalField(max_digits=6, decimal_places=0, default=0, verbose_name="Цена без акции", null=True, blank=True)
 	procent = models.DecimalField(max_digits=6, decimal_places=0, default=0, verbose_name="Процент скидки", null=True, blank=True)
 	skidka = models.DecimalField(max_digits=6, decimal_places=0, default=0, verbose_name="Скидка в рублях", null=True, blank=True)
+
+	file = models.FileField(verbose_name='Файл fb2', upload_to= 'book_files',  null=True, blank=True)
+	file2 = models.FileField(verbose_name='Файл epub', upload_to= 'book_files',  null=True, blank=True)
+	file3 = models.FileField(verbose_name='Файл RTF', upload_to= 'book_files',  null=True, blank=True)
+	file4 = models.FileField(verbose_name='Файл Mobi', upload_to= 'book_files',  null=True, blank=True)
+
 
 
 	futured = models.BooleanField(default=True,verbose_name='Будущее',)
@@ -87,7 +144,7 @@ class Book (models.Model):
 		return self.name_block
 	
 	def get_absolute_url(self):
-		return "/catalog/%s/%s/" % (self.kurs_cat.wiki_cat_slug,self.wiki_slug,)
+		return "/catalog/%s/%s/" % (self.book_cat.book_cat_slug,self.book_slug,)
 
 
 	# переопределение названий
@@ -102,6 +159,72 @@ class Book (models.Model):
 			self.skidka = self.old_price - self.price
 			self.procent = (self.skidka / self.old_price) * 100
 		super(Book, self).save(*args, **kwargs)
+
+	def image_img(self,):
+		if self.image:
+			return mark_safe('<a href="{0}" target="_blank"><img src="{0}" width="100" /></a>' .format(self.image.url))
+		else:
+			return '(Нет изображения)'
+	image_img.short_description = 'Картинка'
+
+	def get_img_tovar_thumbnail(self):
+		if self.image:
+			a = self.image
+			im = get_thumbnail(a, 'x115', format="WEBP", crop='center', )
+			im2 = "/media/"+str(im)
+			return str(im2)
+		else:
+			pass
+
+	def get_img_tovar_thumbnail2(self):
+		if self.image2:
+			a = self.image2
+			im = get_thumbnail(a, 'x115', format="WEBP", crop='center', )
+			im2 = "/media/"+str(im)
+			return str(im2)
+		else:
+			pass
+
+	def get_img_tovar_thumbnail3(self):
+		if self.image:
+			a = self.image
+			im = get_thumbnail(a, 'x288', format="WEBP", crop='center', )
+			im2 = "/media/"+str(im)
+			return str(im2)
+		else:
+			pass
+
+	def get_img_tovar_thumbnail4(self):
+		if self.image2:
+			a = self.image2
+			im = get_thumbnail(a, 'x288', format="WEBP", crop='center', )
+			im2 = "/media/"+str(im)
+			return str(im2)
+		else:
+			pass
+
+
+
+
+
+# class BookFile(models.Model):
+
+# 	book = models.ForeignKey(Book, verbose_name='Выбранная книга', blank=True, null=True ,  on_delete=models.SET_NULL,
+# 						   related_name='bookfile')
+
+# 	name = models.CharField(verbose_name='Название', max_length=255, blank=True, null=True, )
+
+# 	created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name="Created at")
+# 	updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
+	
+# 	class Meta:
+# 		verbose_name = "Файл книги"
+# 		verbose_name_plural = "Файл книги"
+# 		ordering = ["-created_at"]
+
+# 	def __str__(self):
+# 		return f"{self.name}"
+	
 
 
 

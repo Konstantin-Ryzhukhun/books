@@ -1,0 +1,83 @@
+<div class="product-items">
+	<div class="product-block product-thumb transition">
+		<div class="product-block-inner">
+			<div class="image">
+				<a
+					href="{{book.get_absolute_url}}">
+					<img src="{{book.get_img_tovar_thumbnail}}"
+						title="{{book.name_block}}" alt="{{book.name_block}}" class="img-responsive reg-image">
+
+					{% if book.get_img_tovar_thumbnail2 %}	
+					<img class="img-responsive hover-image"
+						src="{{book.get_img_tovar_thumbnail2}}"
+						title="{{book.name_block}}" alt="{{book.name_block}}">
+					{% else %}
+					<img class="img-responsive hover-image" src="{{book.get_img_tovar_thumbnail}}" title="{{book.name_block}}"
+						alt="{{book.name_block}}">
+					{% endif %}
+				</a>
+
+				{% if book.procent != 0 %}
+				<span class="saleicon sale">Скидка</span>
+
+
+				<div class="percentsaving">{{book.procent}}%</div>
+				{% endif %}
+
+				<div class="button-group">
+					<div class="top-btn">
+						<button class="wishlist" type="button" data-toggle="tooltip" title=""
+							onclick="wishlist.add('47 ');" data-placement="left"
+							data-original-title="Add to Wish List "><i class="fa fa-heart"></i></button>
+						<div class="quickview-button" data-toggle="tooltip" title="" data-placement="left"
+							data-original-title="Quick view"> <a class="quickbox"
+								href="{{book.get_absolute_url}}">
+								<i class="fa fa-eye" aria-hidden="true"></i></a></div>
+						<button class="compare" type="button" data-toggle="tooltip" title=""
+							onclick="compare.add('47 ');" data-placement="left" data-original-title="Add to Compare "><i
+								class="fa fa-exchange"></i></button>
+						<button type="button" class="addtocart" data-toggle="tooltip" title=""
+							onclick="cart.add('47 ');" data-placement="left"
+							data-original-title="В корзину"><span>В корзину</span></button>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="product-details">
+				<div class="caption">
+
+					<div class="rating">
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
+								class="fa fa-star-o fa-stack-2x"></i></span>
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
+								class="fa fa-star-o fa-stack-2x"></i></span>
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
+								class="fa fa-star-o fa-stack-2x"></i></span>
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
+								class="fa fa-star-o fa-stack-2x"></i></span>
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i
+								class="fa fa-star-o fa-stack-2x"></i></span>
+					</div>
+
+					<h4><a
+							href="{{book.get_absolute_url}}">{{book.name_block}}</a></h4>
+
+		
+					<p class="price">
+						<span class="price-new">{{book.price}} руб</span> 
+						{% if book.procent != 0 %}
+						<span class="price-old">{{book.old_price}} руб</span>
+						<span class="price-tax">Со скидкой: {{book.skidka}} руб</span>
+						{% endif %}
+					</p>
+
+
+					<button type="button" class="addtocart" onclick="cart.add('47 ');"><span>В корзину</span>
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

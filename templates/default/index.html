@@ -184,7 +184,7 @@ $('#slideshow0').swiper({
 						</div>	
 										<div class="box-product product-carousel" id="tablatest-carousel">
 
-								{% for book in book.latest.all %}
+								{% for book in latest.all %}
 								<li class="double-slideitem slider-item">
 								<ul>
 
@@ -229,7 +229,7 @@ $('#slideshow0').swiper({
 					<div class="box-product product-carousel" id="tabbestseller-carousel">
 
 
-							{% for book in book.bestseller.all %}
+							{% for book in bestseller.all %}
 								<li class="double-slideitem slider-item">
 								<ul>
 									<div class="slider-item">
@@ -270,7 +270,7 @@ $('#slideshow0').swiper({
 						
 						
 						
-							{% for book in book.special.all %}
+							{% for book in special.all %}
 								<li class="double-slideitem slider-item">
 								<ul>
 									<div class="slider-item">
@@ -331,7 +331,7 @@ $('#tabs a').tabs();
 
 
 
-				{% for book in book.futured.all %}
+				{% for book in futured.all %}
 							
 					{% include "book_prewie.html" %}
 								

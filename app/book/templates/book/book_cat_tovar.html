@@ -2,73 +2,72 @@
 {% block content %}
 
 <div class="product-layout product-grid col-lg-4 col-md-4 col-sm-4 col-xs-6">
-          <div class="product-block product-thumb">
-		  	<div class="product-block-inner">
-				<div class="image">					
-											<a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/product&amp;path=20&amp;product_id=47">
-							<img src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/01-212x288.jpg" title="Accusantium Doloremque" alt="Accusantium Doloremque" class="img-responsive reg-image">
-							<img class="img-responsive hover-image" src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/02-212x288.jpg" title="Accusantium Doloremque" alt="Accusantium Doloremque">
-						</a>
-										
-											<div class="saleback">
-							<span class="saleicon sale">Sale</span>         
-						</div>
-										
-					        
-						<div class="percentsaving">4% off</div>
-											
-					<div class="button-group">
-						<div class="top-btn">
-							<button type="button" class="wishlist" data-toggle="tooltip" title="" onclick="wishlist.add('47');" data-placement="left" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button>
-							<div class="quickview-button" data-toggle="tooltip" title="" data-placement="left" data-original-title="Quick view"> <a class="quickbox" href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/quick_view&amp;path=20&amp;product_id=47">
-								<i class="fa fa-eye" aria-hidden="true"></i></a></div>
-							<button type="button" class="compare" data-toggle="tooltip" title="" onclick="compare.add('47');" data-placement="left" data-original-title="Add to Compare"><i class="fa fa-exchange"></i></button>
-							
-				  		</div>
-					</div>
+<div class="product-block product-thumb transition" style="height: 374px;">
+	<div class="product-block-inner">
 
-					<div class="button-addtocart">
-						<button type="button" class="addtocart" onclick="cart.add('47 ');"><span>Add to Cart</span></button>
-					</div>
+		<div class="image">
+			<a href="{{book.get_absolute_url}}">
+				<img src="{{book.get_img_tovar_thumbnail3}}" title="{{book.name_block}}" alt="{{book.name_block}}"
+					class="img-responsive reg-image">
 
-				</div>
-            	
-				<div class="product-details">
-              		<div class="caption">
+				{% if book.get_img_tovar_thumbnail4 %}
+				<img class="img-responsive hover-image" src="{{book.get_img_tovar_thumbnail4}}"
+					title="{{book.name_block}}" alt="{{book.name_block}}">
+				{% else %}
+				<img class="img-responsive hover-image" src="{{book.get_img_tovar_thumbnail3}}"
+					title="{{book.name_block}}" alt="{{book.name_block}}">
+				{% endif %}
 
-              			<div class="rating">
-						  							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 					  	</div>
 
-						<h4><a href="https://demo.codezeel.com/opencart/OPC07/OPC070157/index.php?route=product/product&amp;path=20&amp;product_id=47">Accusantium Doloremque</a></h4>
-						
-						<div class="rating list-rate">
-						  							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 							 							 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-							 							 						</div>
-					   
-					   								<p class="price">
-														<span class="price-new">$100.40</span> <span class="price-old">$104.00</span>
-																					<span class="price-tax">Ex Tax: $82.00</span>
-														</p>
-					  						  
-					
-					    <p class="desc">Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class..</p>
-              		  
-					  	<button type="button" class="addtocart btn btn-primary" onclick="cart.add('47', '1 ');"><span>Add to Cart</span></button>
-					
-					  
-				  </div>
-				</div>
+			</a>
+
+			{% if book.procent != 0 %}
+			<span class="saleicon sale">Распродажа</span>
+
+			<div class="percentsaving">Скидка {{book.procent}}%</div>
+			{% endif %}
+
+			<div class="button-group">
+				<button class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42 ');"
+					data-placement="left" data-original-title="Добавить в избранное">
+					<i class="fa fa-heart"></i></button>
+				<div class="quickview-button" data-toggle="tooltip" title="" data-placement="left"
+					data-original-title="Quick view"> <a class="quickbox" href="/">
+						<i class="fa fa-eye" aria-hidden="true"></i></a></div>
+				<button class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42 ');"
+					data-placement="left" data-original-title="Добавить в сравнение">
+					<i class="fa fa-exchange"></i></button>
 			</div>
-          </div>
-        </div>
+
+			<div class="button-addtocart">
+				<button type="button" class="addtocart" onclick="cart.add('42 ');"><span>В корзину</span></button>
+			</div>
+
+		</div>
+		<div class="product-details">
+			<div class="caption">
+
+				<div class="rating">
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+				</div>
+
+				<h4><a href="/">{{book.name_block}}</a></h4>
+
+				<p class="price">
+					<span class="price-new">{{book.price}} руб</span>
+					{% if book.procent != 0 %}
+					<span class="price-old">{{book.old_price}} руб</span>
+					<span class="price-tax">Со скидкой: {{book.skidka}} руб</span>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 
 {% endblock %}

@@ -32,6 +32,13 @@ def home(request):
 	category = Book_cat.objects.filter(active=True, )
 	blog = Blog.objects.filter(active=True, )[:10]
 
+	futured = Book.objects.filter(active=True, futured=True,).order_by('?')[:20]
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+	special = Book.objects.filter(active=True, special=True,).order_by('?')[:20]
+	bestseller = Book.objects.filter(active=True, bestseller=True,).order_by('?')[:20]
+	latest = Book.objects.filter(active=True, latest=True,).order_by('?')[:20]
+
+
 	# авторизация под админом
 	username = auth.get_user(request).username
 	login_error = ''
@@ -55,6 +62,11 @@ def home(request):
 	response = render(request, 'index.html', {
 		'category':category,
 		'slider':slider,
+		'futured':futured,
+		'futured_mini':futured_mini,
+		'special':special,
+		'bestseller':bestseller,
+		'latest':latest,
 		'blog':blog,
 		'otziv':otziv,
 		'username': username,
@@ -64,6 +76,84 @@ def home(request):
 	return response
 
 
+
+def login(request):
+
+	otziv = Otziv.objects.filter(active=True, )
+	category = Book_cat.objects.filter(active=True, )
+
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+
+
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
+
+	# response = render(request, 'index.html', {
+	# 	'text':text,
+	# 	'username': username,
+	# 	'login_error': login_error, 
+	# })
+
+	response = render(request, 'login.html', {
+		'category':category,
+		'futured_mini':futured_mini,
+		'otziv':otziv,
+		'username': username,
+		'login_error': login_error, 
+	})
+
+	return response
+
+
+
+def register(request):
+
+	otziv = Otziv.objects.filter(active=True, )
+	category = Book_cat.objects.filter(active=True, )
+
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+
+
+	# авторизация под админом
+	username = auth.get_user(request).username
+	login_error = ''
+	if request.method=='POST' and 'autorization' in request.POST:
+		username = request.POST.get('username',)
+		password = request.POST.get('password',)
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			login_error = 'Пользователь не найден'
+
+
+	# response = render(request, 'index.html', {
+	# 	'text':text,
+	# 	'username': username,
+	# 	'login_error': login_error, 
+	# })
+
+	response = render(request, 'register.html', {
+		'category':category,
+		'futured_mini':futured_mini,
+		'otziv':otziv,
+		'username': username,
+		'login_error': login_error, 
+	})
+
+	return response
 
 
 def logout(request):
