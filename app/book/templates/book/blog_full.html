@@ -3,47 +3,105 @@
 {% block content %}
 {% include "header.html" %}
 
-{% include "left.html" %}
+<div class="wrap-breadcrumb parallax-breadcrumb">
+	<div class="container"></div>
+</div>
+
+<div class="container">
+
+	<div class="row">
+
+		{% include "left.html" %}
+
+		<div id="content" class="col-sm-9  single-blog">
+			<ul class="breadcrumb">
+
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+
+				<li><a href="/blog/">Блог</a></li>
+
+				<li>{{blog.name_block}}</li>
+
+			</ul>
+			<h1>{{blog.name_block}}</h1>
+
+			{% if blog.image %}
+			<div class="blog-img">
+				<img src="/media/{{blog.image}}"
+			alt="{{blog.name_block}}" title="{{blog.name_block}}" class="img-thumbnail">
+			</div>
+			{% endif %}
 
 
-<div id="content" class="col-sm-9  single-blog">
-	<ul class="breadcrumb">
-
-		<li><a href="/"><i
-					class="fa fa-home"></i></a></li>
-
-		<li><a href="/blog/">Блог</a></li>
-
-		<li>{{blog.name_block}}</li>
-
-	</ul>
-	<h1>{{blog.name_block}}</h1>
+			<div class="blog-date">{{ blog.created_at|date:"j" }} 
+						{{ blog.created_at|date:"F" }} {{ blog.created_at|date:" Y" }}</div>
+			<div>{{blog.text_block|safe}}</div>
+		
 
 
-	<div class="blog-img">
-		<img src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/blog-6-920x563.jpg"
-			alt="Necessitatibus Saepe Eveniet" title="Necessitatibus Saepe Eveniet" class="img-thumbnail">
+
+
+
+<div class="box blogs">
+					
+		<div class="box-head">
+			<div class="box-heading">Блог</div>
+		</div>
+		<div class="box-content">
+				
+			<div class="customNavigation">
+					<a class="fa prev czblog_prev"></a>
+					<a class="fa next czblog_next"></a>
+				</div>
+
+
+			
+						
+			<div class="box-product  owl-carousel blogcarousel " id="blog-carousel">
+				 
+					{% for blog in blog_r.all %}
+					
+					{% include "blog_prewie.html" %}
+					
+					{% endfor %}
+				 
+				   
+			</div>
+			<div class="buttons text-center">
+				<button type="button" onclick="location='indexc295.html?route=information/blogger/blogs';" class="btn btn-primary">See all Blogs</button>
+			</div>
+		</div>
+</div>
+<span class="blog_default_width" style="display:none; visibility:hidden"></span>
+
+<script type="text/javascript"><!--
+
+$(document).ready(function(){
+	$('.blogcarousel').owlCarousel({
+		items: 3,
+		singleItem: false,
+		navigation: false,
+		pagination: false,
+		itemsDesktop : [1199,2],
+		itemsDesktopSmall :	[991,2],
+		itemsTablet :	[575,1]
+	});
+	// Custom Navigation Events
+	$(".czblog_next").click(function(){
+		$('.blogcarousel').trigger('owl.next');
+	})
+	$(".czblog_prev").click(function(){
+		$('.blogcarousel').trigger('owl.prev');
+	});	
+});	
+--></script>
+
+
 	</div>
-
-
-	<div class="blog-date">28 February, 2018</div>
-		<div>{{blog.text_block}}</div>
-	</div>
-
-
-
-
-
-
-	<div class="block-title">
-		<legend>добавить комментарий</legend>
-	</div>
-	<div class="panel panel-default" id="add-comment">
-
-		<h4 class="text-center">Для написания комментария нужно <a href="/login">авторизоваться</a></h4> </h4>
-
-	</div>
+</div>
 </div>
 
 {% include "footer.html" %}
 {% endblock %}
+
+

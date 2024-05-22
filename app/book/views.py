@@ -22,6 +22,17 @@ from constance import config
 
 def blog(request):
 	
+	blog = Blog.objects.filter(active=True,).order_by('-created_at')
+
+	paginator = Paginator(blog, 12)
+	page = request.GET.get('page')
+	try:
+		blog = paginator.page(page)
+	except PageNotAnInteger:
+		blog = paginator.page(1)
+	except EmptyPage:
+		blog = paginator.page(paginator.num_pages)
+
 	# авторизация под админом
 	username = auth.get_user(request).username
 	login_error = ''
@@ -37,42 +48,23 @@ def blog(request):
 
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+
+
 	response = render(request, 'book/blog.html', {
+		'blog':blog,
 		'category':category,
 		'otziv':otziv,
+		'futured_mini':futured_mini,
 		'username': username,
 		'login_error': login_error, 
 		'config': config
 	})
 	return response
 
-def blog_cat(request, slug):
-	
-	# авторизация под админом
-	username = auth.get_user(request).username
-	login_error = ''
-	if request.method=='POST' and 'autorization' in request.POST:
-		username = request.POST.get('username',)
-		password = request.POST.get('password',)
-		user = auth.authenticate(username=username, password=password)
-		if user is not None:
-			auth.login(request, user)
-			return HttpResponseRedirect('/')
-		else:
-			login_error = 'Пользователь не найден'
 
-	otziv = Otziv.objects.filter(active=True, )
-	category = Book_cat.objects.filter(active=True, )
-	response = render(request, 'book/blog_cat.html', {
-		'category':category,
-		'otziv':otziv,
-		'username': username,
-		'login_error': login_error, 
-		'config': config
-	})
-	return response
 
-def blog_full(request, slug,  post_slug):
+def blog_full(request, slug):
 
 	# авторизация под админом
 	username = auth.get_user(request).username
@@ -89,10 +81,17 @@ def blog_full(request, slug,  post_slug):
 
 	otziv = Otziv.objects.filter(active=True, )
 	category = Book_cat.objects.filter(active=True, )
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
+
+	blog = get_object_or_404(Blog.objects.filter(active=True),slug=slug,)
+	blog_r =  Blog.objects.filter(active=True,).order_by('?')[:20]
 
 	response = render(request, 'book/blog_full.html', {
+		'blog':blog,
+		'blog_r':blog_r,
 		'category':category,
 		'otziv':otziv,
+		'futured_mini':futured_mini,
 		'username': username,
 		'login_error': login_error, 
 		'config': config
@@ -101,6 +100,8 @@ def blog_full(request, slug,  post_slug):
 
 
 def prostopages(request, slug):
+
+	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
 
 	# авторизация под админом
 	username = auth.get_user(request).username
@@ -123,6 +124,7 @@ def prostopages(request, slug):
 	response = render(request, 'book/prostopages.html', {
 		'prostopages':prostopages,
 		'category':category,
+		'futured_mini':futured_mini,
 		'otziv':otziv, 
 		'username': username,
 		'login_error': login_error, 

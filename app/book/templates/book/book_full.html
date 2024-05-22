@@ -321,19 +321,25 @@
 
 	<div id="tabs_info" class="product-tab col-sm-12">
 		<ul class="nav nav-tabs">
+
+			{% if book.opisanie_full %}
 			<li class="active"><a href="#tab-description" data-toggle="tab">
 					
 						Описание
 					
 				</a></li>
-		
-			<li><a href="#tab-review" data-toggle="tab">
+			{% endif %}
+
+			<li {% if book.opisanie_full %}{% else %}class="active"{% endif %}><a href="#tab-review" data-toggle="tab">
 					
 						Отзывы ({% if otziv_book %}{{otziv_book|length}}{% else %}0{% endif %})
 					
 				</a></li>
 		</ul>
 		<div class="tab-content">
+
+
+				{% if book.opisanie_full %}
 			<div class="tab-pane active" id="tab-description">
 				<p>
 					
@@ -343,8 +349,9 @@
 					
 				</p>
 			</div>
+			{% endif %}
 			
-			<div class="tab-pane" id="tab-review">
+			<div class="tab-pane {% if book.opisanie_full %}{% else %}active{% endif %}" id="tab-review">
 
 
 
@@ -417,6 +424,11 @@
 
 
 					{% endif %}
+
+
+{% if request.user.is_authenticated %}
+
+
 					<form class="form-horizontal" id="form-review">
 					<h3>
 						
@@ -540,6 +552,33 @@
 						</div>
 					</div>
 				</form>
+
+				{% else %}
+				<div class="panel panel-default" id="add-comment">
+
+	<h4 class="text-center">
+
+		Вы должны
+		<a style="    color: #e56220;" href="/login/">
+
+			войти
+
+		</a>
+
+		чтобы добавить комментарий. Если у вас нет учетной записи, вы можете
+
+		<a style="    color: #e56220;" href="/register/">
+
+			зарегистрировать
+
+		</a>
+
+		ее. Регистрация бесплатна!
+
+	</h4>
+
+</div>
+				{% endif %}
 
 
 

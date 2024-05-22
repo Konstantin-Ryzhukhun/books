@@ -27,7 +27,8 @@
 			
 
 
-			<div class="blog-date">28 February, 2018</div>
+			<div class="blog-date">{{ prostopages.created_at|date:"j" }} 
+						{{ prostopages.created_at|date:"F" }} {{ prostopages.created_at|date:" Y" }}</div>
 			<div>{{prostopages.text_block|safe}}</div>
 		</div>
 

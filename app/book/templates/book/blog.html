@@ -1,46 +1,174 @@
+{% extends "base.html" %}
 {% load static %} 
 {% block content %}
+{% include "header.html" %}
+
+		
+<style>
+	.blog-left .blog-image img {
+    width: 100%;
+    height: 120px;
+    padding: 0;
+    border: none;
+    object-fit: cover;
+}
+.row {
+    margin-left: -10px;
+    margin-right: -10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-block {
+    margin: 5px 12px;
+}
+</style>
+
+<div class="wrap-breadcrumb parallax-breadcrumb">
+	<div class="container"></div>
+</div>
+
+<div class="container">
+
+	<div class="row">
+
+		{% include "left.html" %}
+
+		<div id="content" class="col-sm-9  single-blog">
+			<ul class="breadcrumb">
+
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+
+				<li>Блог</li>
+
+			</ul>
 
 
 
-<div id="content" class="col-sm-9  single-blog">
-	<ul class="breadcrumb">
-
-		<li><a href="/"><i
-					class="fa fa-home"></i></a></li>
-
-		<li><a href="/blog/">Блог</a></li>
-
-		<li>{{blog.name_block}}</li>
-
-	</ul>
-	<h1>{{blog.name_block}}</h1>
 
 
-	<div class="blog-img">
-		<img src="https://demo.codezeel.com/opencart/OPC07/OPC070157/image/cache/catalog/blog-6-920x563.jpg"
-			alt="Necessitatibus Saepe Eveniet" title="Necessitatibus Saepe Eveniet" class="img-thumbnail">
-	</div>
+<div class="row category_thumb">
+               
+        <div class="col-sm-12">
+        	<h1 class="page-title">Блог</h1>
+        </div>
+
+        <div class="col-sm-10 category_description">
+</div>
+              </div>
 
 
-	<div class="blog-date">28 February, 2018</div>
-		<div>{{blog.text_block}}</div>
-	</div>
+
+			  <div id="products">
 
 
 
 
+				 <div class="cat_prod row">
 
 
-	<div class="block-title">
-		<legend>добавить комментарий</legend>
-	</div>
-	<div class="panel panel-default" id="add-comment">
+{% for blog in blog %}
+	<div class="product-layout col-lg-4 col-md-4 col-sm-4 col-xs-6">						
+	        {% include "blog_prewie.html" %}
+	</div>						
+{% empty %}
+        <p style="font-size: 16px">Нет постов</p>
+{% endfor %}
 
-		<h4 class="text-center">Для написания комментария нужно <a href="/login">авторизоваться</a></h4> </h4>
+
+
+				 </div>
+
+
+
+
+
+
+
+
+<div class="pagination-wrapper">
+			<div class="col-sm-6 text-left page-link">
+                              
+
+                                
+   {% if blog.paginator.num_pages > 1 %}
+                    <ul class="pagination">
+                        {% if blog.has_previous %}
+                       <li> <a class="paginator_b" rel="prev" href="?page={{ blog.previous_page_number }}">←</a></li>{% else %} {% endif %}
+                        {% if blog.previous_page_number > 2 %}
+                         <li>  <a class="paginator_a" href="?page=1">1</a> </li>
+                           <li>      <span class="paginator_a_dots">...</span> </li>
+                        {% else %} {% endif %}
+                        {% for i in blog.paginator.page_range %}
+                        {% if blog.number == i %}
+                        <li class="active">   <span class="paginator_current">{{ i }}</span> </li>
+                        {% elif i > blog.number|add:'-2' and i < blog.number|add:'10' %} 
+						  <li > <a class="paginator_a" title="" href="?page={{ i }}">{{ i }}</a> </li>
+                            {% endif %}
+                            {% endfor %}
+
+
+                            {% if blog.has_next and blog.paginator.num_pages > 5 %}
+                            <li>   <span class="paginator_a_dots">…</span> </li>
+                             <li>  <a class="paginator_c" title="" href="?page={{ blog.paginator.num_pages }}">{{ blog.paginator.num_pages }}</a> </li>
+                             <li>  <a class="paginator_b" rel="next" style="margin-right: 0;" href="?page={{ blog.next_page_number }}">→</a> </li>
+                            {% else %} {% endif %}
+                
+                    </ul>
+                    {% else %} {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+			<div class="col-sm-6 text-right page-result"></div>
+	   </div>
+
+
+
+
+			  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+
 
 	</div>
 </div>
 
 
+
+
+
+
+{% include "footer.html" %}
 {% endblock %}
+
+

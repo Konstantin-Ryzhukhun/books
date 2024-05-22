@@ -286,7 +286,7 @@ $('#slideshow0').swiper({
  </div>
 
 </div></div>
-
+</div></div>
 <script type="text/javascript">
 $('#tabs a').tabs();
 </script> 
@@ -317,32 +317,33 @@ $('#tabs a').tabs();
 </div> 
 </div>
 <div class="box featured">
-<div class="container">
-	<div class="box-head">
-		<div class="box-heading">Рекомендуемые книги</div>
-	</div>
-	<div class="box-content">
-									<div class="customNavigation">
+	<div class="container">
+		<div class="box-head">
+			<div class="box-heading">Рекомендуемые книги</div>
+		</div>
+		<div class="box-content">
+
+			<div class="customNavigation">
 				<a class="fa prev fa-arrow-left">&nbsp;</a>
 				<a class="fa next fa-arrow-right">&nbsp;</a>
-			</div>	
-			
-		<div class="box-product product-carousel" id="featured-carousel">
+			</div>
+
+			<div class="box-product product-carousel" id="featured-carousel">
 
 
 
 				{% for book in futured.all %}
-							
+<div class="slider-item">
 					{% include "book_prewie.html" %}
-								
+</div>
 				{% endfor %}
 
 
 
 
-				</div>
+			</div>
+		</div>
 	</div>
-</div>
 </div>
 <span class="featured_default_width" style="display:none; visibility:hidden"></span>
 

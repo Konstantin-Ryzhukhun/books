@@ -444,7 +444,7 @@ class Blog(models.Model):
 		ordering = ["created_at"]
 
 	def get_absolute_url(self):
-		return "/%s/" % (self.slug)
+		return "/blog/%s/" % (self.slug)
 	
 
 	def get_img_tovar_thumbnail(self):
