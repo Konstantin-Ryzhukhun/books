@@ -4085,6 +4085,7 @@ div#product .form-group .hasCustomSelect{ width: 100% !important; }
 }
 .footer-blocks .footerleft #footerlogo .footerlogo img{
 	max-width: 100%;
+    margin-top: 0 !important;
 }
 .footer-blocks .footerleft #footerlogo .footerdesc{ 
 	margin-bottom: 18px;
@@ -5668,7 +5669,7 @@ button#button-cart {
 		animation: slide-down 0.7s;
 	}
     .header-logo img {
-        max-height: 36px;
+        margin-top: 0 !important;
     }
     #search .search_toggle {
         top: 2px;
@@ -5951,11 +5952,12 @@ button#button-cart {
         width: 100%;
     }
     .header-main {
-        padding-bottom: 30px;
+            padding-bottom: 0;
+                padding-top: 10px;
     }
     .dropdown.myaccount {
-        margin-top: 40px;
-        margin-bottom: -68px;
+       
+        margin-bottom: -48px;
         margin-right: 12px;
     }
     header .dropdown.myaccount > a {
@@ -5975,9 +5977,9 @@ button#button-cart {
         top: 40px;
     }
     .header-cart {
-        margin-top: 41px;
-        margin-bottom: -85px;
-        margin-right: 40px;
+        margin-top: 18px;
+            margin-bottom: -55px;
+            margin-right: 40px;
         z-index: 8;
     }
     #cart-total {
