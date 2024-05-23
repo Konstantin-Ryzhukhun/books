@@ -226,11 +226,31 @@ class SliderAdmin(admin.ModelAdmin):
         model = Slider
 
 
+class OtzivBookAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Основные настройки',        {'fields': ['zakazchik', 'book', 'rayting',
+              'rayting2', 'rayting3', 'rayting_seredina', 'otziv_plus', 'otziv_minus', 'opisanie', 'active',  ]}),
+        
+    ]
+    list_display = ["id", 'book', 'opisanie', "zakazchik",   'rayting',
+              'rayting2', 'rayting3', "active",  ]
+    list_display_links = ["id",]
+    list_editable = ['active', "zakazchik",  'rayting',
+              'rayting2', 'rayting3', ]
+    list_filter = ["zakazchik", "active",]
+    search_fields = ["book"]
+    list_per_page = 30
+
+
+    class Meta:
+        model = OtzivBook
+
+
 admin.site.register(Book_cat, Book_catAdmin, )
 admin.site.register(Book, BookAdmin, )
 admin.site.register(Prostopages, ProstopagesAdmin, )
 admin.site.register(Otziv, OtzivAdmin, )
 admin.site.register(Blog, BlogAdmin, )
 admin.site.register(Slider, SliderAdmin, )
-admin.site.register(OtzivBook )
+admin.site.register(OtzivBook , OtzivBookAdmin,)
 admin.site.register(Book_avtor )

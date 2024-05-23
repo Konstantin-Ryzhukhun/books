@@ -1,4 +1,4 @@
-<div class="product-block product-thumb transition" style="height: 374px;">
+<div class="product-block product-thumb transition" >
 	<div class="product-block-inner">
 
 		<div class="image" >
@@ -43,16 +43,16 @@
 		</div>
 		<div class="product-details">
 			<div class="caption">
-
+				
 				<div class="rating">
-					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-					<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack">{% if book.avg_rating >= 0.6 %}<i class="fa fa-star fa-stack-2x"></i>{% endif %}<i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack">{% if book.avg_rating >= 1.6 %}<i class="fa fa-star fa-stack-2x"></i>{% endif %}<i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack">{% if book.avg_rating >= 2.6 %}<i class="fa fa-star fa-stack-2x"></i>{% endif %}<i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack">{% if book.avg_rating >= 3.6 %}<i class="fa fa-star fa-stack-2x"></i>{% endif %}<i class="fa fa-star-o fa-stack-2x"></i></span>
+					<span class="fa fa-stack">{% if book.avg_rating >= 4.6 %}<i class="fa fa-star fa-stack-2x"></i>{% endif %}<i class="fa fa-star-o fa-stack-2x"></i></span>
 				</div>
 
-				<h4><a href="/">{{book.name_block}}</a></h4>
+				<h4><a href="{{book.get_absolute_url}}">{{book.name_block}}</a></h4>
 
 				<p class="price">
 					<span class="price-new">{{book.price}} руб</span> 

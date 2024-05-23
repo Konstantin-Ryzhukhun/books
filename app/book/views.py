@@ -17,6 +17,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
+from django.db.models import Avg, Count, F, ExpressionWrapper, fields, Case, When, Value, IntegerField
 
 from constance import config
 
@@ -149,7 +152,15 @@ def book_cat(request, book_cat_slug):
 
 	book_cat = get_object_or_404(Book_cat.objects.filter(active=True, book_cat_slug=book_cat_slug) )
 
-	tovar_all = Book.objects.filter(active=True, book_cat=book_cat).order_by('-created_at')
+	# tovar_all = Book.objects.filter(active=True, book_cat=book_cat).order_by('-created_at')
+
+	
+	tovar_all = Book.objects.filter(active=True, book_cat=book_cat).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('-created_at').distinct()
 
 	paginator = Paginator(tovar_all, 12)
 	page = request.GET.get('page')
@@ -173,8 +184,12 @@ def book_cat(request, book_cat_slug):
 		else:
 			login_error = 'Пользователь не найден'
 
+
+
+
 	response = render(request, 'book/book_cat.html', {
 		'book_cat':book_cat,
+
 		'tovar_all':tovar_all,
 		'category':category,
 		'otziv':otziv, 
@@ -216,8 +231,46 @@ def book_full(request, book_cat_slug, book_slug):
 		else:
 			login_error = 'Пользователь не найден'
 
+
+	if request.method=='POST' and 'otziv_add' in request.POST:
+		text = request.POST.get('text')
+		text2 = request.POST.get('text2')
+		text3 = request.POST.get('text3')
+		rating = request.POST.get('rating')
+		rating2 = request.POST.get('rating2')
+		rating3 = request.POST.get('rating3')
+		book_id = request.POST.get('book_id')
+		avtor_id = request.POST.get('avtor_id')
+
+		print(request.POST)
+
+		zakazchik = User.objects.get(id=avtor_id)  
+		book = Book.objects.get(id=book_id)  
+		
+		review = OtzivBook(
+			 otziv_plus=text, 
+			otziv_minus=text2, opisanie=text3, 
+			rayting=rating, rayting2=rating2, 
+			rayting3=rating3, book=book, zakazchik = zakazchik)
+		review.save()
+		
+		return JsonResponse({'message': 'Отзыв сохранен успешно!'})
+	
+
+	rayting_sr = OtzivBook.objects.filter(
+		active=True, book=book, ).aggregate(Avg('rayting_seredina'))
+
+	if rayting_sr['rayting_seredina__avg'] is not None:
+		rayting_sr_int = rayting_sr['rayting_seredina__avg']
+		#print(rayting_sr_int)
+		rayting_sr_procent = round(rayting_sr_int / 5 * 100)
+	else:
+		rayting_sr_procent = ''
+
+
 	response = render(request, 'book/book_full.html', {
-		'otziv':otziv, 
+		'otziv':otziv,
+		'rayting_sr':rayting_sr,
 		'book_dop':book_dop,
 		'otziv_book':otziv_book,
 		'futured_mini':futured_mini,

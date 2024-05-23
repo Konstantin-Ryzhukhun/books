@@ -2064,9 +2064,14 @@ p.powered{
 	position:relative;
 	/*overflow: hidden;*/
 	margin-bottom: 5px;
+    height: 300px;
+        border-radius: 5px;
+            overflow: hidden;
 }
 .product-thumb .image a {
 	display: block;
+    height: 100%;
+
 }
 .product-thumb:hover .image a {
     opacity: 0.6;
@@ -3999,6 +4004,11 @@ div#product .form-group .hasCustomSelect{ width: 100% !important; }
 }
 .product-block-inner a img {vertical-align:middle; width: 100%;}
 
+.product-block-inner a img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
 
 .box-category-heading {
     background-color: #000;

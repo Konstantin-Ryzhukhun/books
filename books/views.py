@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect
 
+from django.db.models import Avg, Count, F, ExpressionWrapper, fields, Case, When, Value, IntegerField
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -31,6 +33,8 @@ from io import BytesIO
 from django.conf import settings
 import os
 
+
+
 from constance import config
 
 def home(request):
@@ -40,11 +44,40 @@ def home(request):
 	category = Book_cat.objects.filter(active=True, )
 	blog = Blog.objects.filter(active=True, )[:10]
 
-	futured = Book.objects.filter(active=True, futured=True,).order_by('?')[:20]
-	futured_mini = Book.objects.filter(active=True, futured=True,).order_by('?')[:3]
-	special = Book.objects.filter(active=True, special=True,).order_by('?')[:20]
-	bestseller = Book.objects.filter(active=True, bestseller=True,).order_by('?')[:20]
-	latest = Book.objects.filter(active=True, latest=True,).order_by('?')[:20]
+
+	futured = Book.objects.filter(active=True, futured=True,).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('?').distinct()[:20]
+	futured_mini = Book.objects.filter(active=True, futured=True,).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('?').distinct()[:3]
+
+	special = Book.objects.filter(active=True,  special=True,).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('?').distinct()[:20]
+
+	bestseller = Book.objects.filter(active=True, bestseller=True,).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('?').distinct()[:20]
+
+	latest = Book.objects.filter(active=True, latest=True,).annotate(
+		avg_rating=Avg('otzivbook__rayting_seredina'),
+		rating_percentage=ExpressionWrapper(
+			F('avg_rating') / 5 * 100, output_field=fields.DecimalField()
+		)
+	).order_by('?').distinct()[:20]
 
 
 	# авторизация под админом

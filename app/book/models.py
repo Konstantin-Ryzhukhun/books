@@ -188,7 +188,7 @@ class Book (models.Model):
 	def get_img_tovar_thumbnail3(self):
 		if self.image:
 			a = self.image
-			im = get_thumbnail(a, 'x288', format="WEBP", crop='center', )
+			im = get_thumbnail(a, 'x350', format="WEBP", crop='center', )
 			im2 = "/media/"+str(im)
 			return str(im2)
 		else:
@@ -197,7 +197,7 @@ class Book (models.Model):
 	def get_img_tovar_thumbnail4(self):
 		if self.image2:
 			a = self.image2
-			im = get_thumbnail(a, 'x288', format="WEBP", crop='center', )
+			im = get_thumbnail(a, 'x350', format="WEBP", crop='center', )
 			im2 = "/media/"+str(im)
 			return str(im2)
 		else:
@@ -285,7 +285,7 @@ class OtzivBook(models.Model):
 		verbose_name='Комментарий', default='', null=True, blank=True, config_name='extends')
 
 
-	zakazchik = models.ForeignKey(User, verbose_name='Заказчик',max_length=255, null=True, blank=True, on_delete=models.SET_NULL,)
+	zakazchik = models.ForeignKey(User, verbose_name='Автор',max_length=255, null=True, blank=True, on_delete=models.SET_NULL,)
 
 
 	active = models.BooleanField(default=True, verbose_name='Активность',)
@@ -321,9 +321,18 @@ class OtzivBook(models.Model):
 	
 
 	def save(self, *args, **kwargs):
-		# Расчет скидки и процента скидки
 		if self.rayting and self.rayting2 and self.rayting3:
-			self.rayting_seredina = round((self.rayting + self.rayting2 + self.rayting3 ) / 3, 2)
+			try:
+				rayting_int = int(self.rayting)
+				rayting2_int = int(self.rayting2)
+				rayting3_int = int(self.rayting3)
+				self.rayting_seredina = round((rayting_int + rayting2_int + rayting3_int) / 3, 2)
+			except ValueError:
+				# Handle the case where the conversion to int fails
+				print("Ну какой то объект не цифра")
+		else:
+			print("не можем посчитать средний рейтинг")
+		
 		super(OtzivBook, self).save(*args, **kwargs)
 
 
